@@ -12,7 +12,7 @@ public class Start {
 		//TODO 做成有UI画面的输入框
 		ArrayList<Chapter> result = null;
 		
-		result = (new GetChapter("18008")).getChapter();
+		result = (new GetChapter("16725")).getChapter();
 		for(Chapter ch:result)
 		{
 			System.out.println(ch.getTitle() + "," + ch.getHtml());

@@ -7,6 +7,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GetChapter {
 	private ArrayList<Chapter> Chapter = new ArrayList<Chapter>();
@@ -22,6 +24,7 @@ public class GetChapter {
 		this.UrlAdd = "http://www.manhuagui.com/comic/" + ComicNum + "/" + "?" + (new Date()).getTime();
 		GetHtml();
 		AnalyHtml();
+		//TODO 排序待优化，后续考虑通过标题数字进行排序优化，需要考虑卷，回关键字
 		Collections.reverse(Chapter);
 	}
 	
@@ -55,7 +58,7 @@ public class GetChapter {
 			//TODO 弹出对话框来表示输入的数字有问题
 			System.out.println("Error");
 			e.printStackTrace();
-		}
+		}		
 		
 		return;
 	}
@@ -69,28 +72,19 @@ public class GetChapter {
 		int endidx = 0;
 		
 		if(null == result) return;
-		String SearchWord = "<li><a href=\"/comic/" + ComicNum;
-		int index = 0;
-		while(-1 != (index = result.indexOf(SearchWord)))
+	
+		String Rex = "<li><a href=\"/comic/" + ComicNum + "/(.+?)\" title=\"(.+?)\"";
+		Pattern pattern = Pattern.compile(Rex);
+		Matcher matcher = pattern.matcher(result);
+		while(matcher.find())
 		{
-			//截取是为了方便后续的搜索速度，同时也让查找到的第一个特定字符串满足我们的需要
-			result = result.substring(index);
-			//查找网址内容
-			startidx = result.indexOf(ComicNum);
-			endidx = result.indexOf("\"", startidx);
-			Html = "http://www.manhuagui.com/comic/" + ComicNum + "/" + result.substring(startidx + LenOfComic + 1, endidx);
-			//查找标题内容
-			startidx = result.indexOf("title");
-			endidx = result.indexOf("\"", startidx + 8);
-			Title = result.substring(startidx + 7, endidx);
-			//存入列表中
+			Title = matcher.group(2);
+			Html = "http://www.manhuagui.com/comic/" + ComicNum + "/" + matcher.group(1);
 			Chapter.add(new Chapter(Title, Html));
-			result = result.substring(endidx);
-		}	
+		}
 		
 		return;
 	}
-
 	public ArrayList<Chapter> getChapter() {
 		return Chapter;
 	}
