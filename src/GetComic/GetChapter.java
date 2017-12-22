@@ -1,81 +1,36 @@
 package GetComic;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+//该类用于获取漫画的章节名和各章节的URL
 public class GetChapter {
 	private ArrayList<Chapter> Chapter = new ArrayList<Chapter>();
 	private String UrlAdd = null;
 	private String ComicNum;
-	private int LenOfComic;
-	private String result = null;
 	
 	public GetChapter(String ComicNum)
 	{
 		this.ComicNum = ComicNum;
-		this.LenOfComic = this.ComicNum.length();
 		this.UrlAdd = "http://www.manhuagui.com/comic/" + ComicNum + "/" + "?" + (new Date()).getTime();
-		GetHtml();
-		AnalyHtml();
+		AnalyHtml(GetHtml.GetInfo(this.UrlAdd));
 		//TODO 排序待优化，后续考虑通过标题数字进行排序优化，需要考虑卷，回关键字
 		Collections.reverse(Chapter);
-	}
-	
-	//设置HTTP访问申请头
-	private void SetProp(URLConnection con)
-	{
-		con.setRequestProperty("accept", "*/*");
-		con.setRequestProperty("connection", "Keep-Alive");
-		con.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36");
-		return;
-	}
-	
-	//抓取网页内容
-	private void GetHtml()
-	{
-		if(null == UrlAdd) return;
-		String line;
-		URL url;
+	}	
 		
-		try {
-			url = new URL(UrlAdd);
-			URLConnection urlcon = url.openConnection();
-			SetProp(urlcon);
-			urlcon.connect();
-			BufferedReader urlRead = new BufferedReader(new InputStreamReader(urlcon.getInputStream(), "utf-8"));
-			while((line = urlRead.readLine()) != null)
-			{
-				result += line;
-			}
-		} catch (Exception e) {
-			//TODO 弹出对话框来表示输入的数字有问题
-			System.out.println("Error");
-			e.printStackTrace();
-		}		
-		
-		return;
-	}
-	
-	//分析网页内容，提取回合标题和内容
-	private void AnalyHtml()
+	//分析网页内容，提取章节标题和URL
+	private void AnalyHtml(String HtmlInfo)
 	{
 		String Title = null;
 		String Html = null;
-		int startidx = 0;
-		int endidx = 0;
 		
-		if(null == result) return;
-	
+		if(null == HtmlInfo) return;
+		//使用正则表达式进行匹配
 		String Rex = "<li><a href=\"/comic/" + ComicNum + "/(.+?)\" title=\"(.+?)\"";
 		Pattern pattern = Pattern.compile(Rex);
-		Matcher matcher = pattern.matcher(result);
+		Matcher matcher = pattern.matcher(HtmlInfo);
 		while(matcher.find())
 		{
 			Title = matcher.group(2);
@@ -85,6 +40,7 @@ public class GetChapter {
 		
 		return;
 	}
+	
 	public ArrayList<Chapter> getChapter() {
 		return Chapter;
 	}
