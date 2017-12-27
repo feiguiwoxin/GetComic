@@ -9,7 +9,7 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-import Start.Start;
+import Config.ValidConfig;
 
 public class GetPicture {
 	private ArrayList<String> PicturePath = new ArrayList<String>();
@@ -56,7 +56,7 @@ public class GetPicture {
 		ScriptEngineManager engineManager = new ScriptEngineManager();
 		ScriptEngine engine = engineManager.getEngineByName("js");
 		try {
-			engine.eval(new FileReader(Start.class.getResource("/config.js").toURI().getPath()));
+			engine.eval(new FileReader(ValidConfig.JSPath));
 			Invocable inv = (Invocable)engine;
 			String ParkerInfo = (String)inv.invokeFunction("parase", para1,para2,para3,para4,para5);
 			getPath(ParkerInfo);

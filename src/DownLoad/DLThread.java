@@ -1,20 +1,20 @@
-package download;
+package DownLoad;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import Config.LOG;
 import GetComic.GetPicture;
 import GetComic.SaveImg;
-import Log.LOG;
 
-public class DownLoad implements Runnable{
+public class DLThread implements Runnable{
 	private String html = null;
 	private String title = null;
 	private String path = null;
 	
-	public DownLoad(String html,String title,String path)
+	public DLThread(String html,String title,String path)
 	{
 		this.html = html;
 		this.title = title;
