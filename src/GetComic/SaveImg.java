@@ -21,12 +21,12 @@ public class SaveImg {
 		this.FileName = FileName;
 	}
 	//将图片的二进制流写入文件，返回是否保存成功
-	public boolean SavePicture()
+	public int SavePicture()
 	{
-		if(null == Path || null == FileName) return false;
+		if(null == Path || null == FileName) return 0;
 		
 		byte[] imgData = getImgData();
-		if(null == imgData) return false;
+		if(null == imgData) return 0;
 		
 		File file = new File(Path + FileName);
 		FileOutputStream fop = null;
@@ -40,7 +40,7 @@ public class SaveImg {
 				JOptionPane.showConfirmDialog(null, "保存文件失败，请检查配置文件夹或磁盘空间是否已满！", "错误提示", 
 												JOptionPane.CLOSED_OPTION);
 				e.printStackTrace();
-				return false;
+				return 0;
 			}
 			finally
 			{
@@ -52,7 +52,7 @@ public class SaveImg {
 			e.printStackTrace();
 		}
 		
-		return true;
+		return 1;
 	}
 	//获取图片的二进制流
 	private byte[] getImgData()
@@ -79,7 +79,7 @@ public class SaveImg {
 	{
 		int len;
 		
-		byte[] buffer = new byte[1024];
+		byte[] buffer = new byte[3 * 100 * 1024];
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		while((len = in.read(buffer)) != -1)
 		{
