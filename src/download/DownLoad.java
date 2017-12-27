@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import GetComic.GetPicture;
 import GetComic.SaveImg;
+import Log.LOG;
 
 public class DownLoad implements Runnable{
 	private String html = null;
@@ -32,9 +33,7 @@ public class DownLoad implements Runnable{
 		
 		if(!dir.mkdir())
 		{
-			JOptionPane.showConfirmDialog(null, "创建章节文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在"+ dir.getPath(), "错误说明", JOptionPane.CLOSED_OPTION);
-			//TODO 后续写入到日志当中
-			System.out.println("创建章节文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在\n" + dir.getPath());
+			LOG.log("创建章节文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在:" + dir.getAbsolutePath());
 			return;
 		}
 		
@@ -42,8 +41,7 @@ public class DownLoad implements Runnable{
 		
 		if(PicPath.isEmpty())
 		{
-			//TODO 后续写入到日志当中
-			System.out.println("解析图片地址失败，需要重新适配");
+			LOG.log("解析图片地址失败，需要重新适配:" + html);
 			return;
 		}
 		
@@ -55,8 +53,7 @@ public class DownLoad implements Runnable{
 			result = (new SaveImg(path, dir.getAbsolutePath() + "/", index + ".jpg")).SavePicture();
 			if(0 == result)
 			{
-				//TODO 后续写入到日志当中
-				System.out.println("下载图片地址失败，需要重新适配");
+				LOG.log("下载图片地址失败，需要重新适配:" + path);
 				return;
 			}
 			index ++;

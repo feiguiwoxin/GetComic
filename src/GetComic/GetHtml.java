@@ -30,8 +30,6 @@ public class GetHtml {
 			}
 			urlRead.close();
 		} catch (Exception e) {
-			JOptionPane.showConfirmDialog(null, "请确保输入的漫画ID是正确的", "错误提示", JOptionPane.CLOSED_OPTION);
-			e.printStackTrace();
 			return null;
 		}
 		return HttpInfo;

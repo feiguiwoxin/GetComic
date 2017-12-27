@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import GetComic.Chapter;
 import GetComic.GetChapter;
+import Log.LOG;
 
 public class DLControl {
 		public static boolean ThreadControl(String ComicNum, int PoolSize) throws InterruptedException
@@ -16,9 +17,7 @@ public class DLControl {
 			ArrayList<Chapter> Chapters = new GetChapter(ComicNum).getChapter();
 			if(Chapters.isEmpty())
 			{
-				JOptionPane.showConfirmDialog(null, "分解章节失败，需要重新适配网站", "错误说明", JOptionPane.CLOSED_OPTION);
-				//TODO 后续写入到日志当中
-				System.out.println("分解章节失败，需要重新适配");
+				LOG.log("分解章节失败，请检查漫画ID是否正确：" + ComicNum);
 				return false;
 			}
 			
@@ -31,9 +30,7 @@ public class DLControl {
 			
 			if(!HeadDir.mkdirs())
 			{
-				JOptionPane.showConfirmDialog(null, "创建初始文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在", "错误说明", JOptionPane.CLOSED_OPTION);
-				//TODO 后续写入到日志当中
-				System.out.println("创建初始文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在");
+				LOG.log("创建初始文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在:" + HeadDir.getAbsolutePath());
 				return false;
 			}
 			
