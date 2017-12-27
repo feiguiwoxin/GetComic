@@ -76,7 +76,7 @@ public class GetPicture {
 		while(match.find())
 		{
 			path = match.group(3);
-			files = match.group(1).replaceAll("\"","").split(",");
+			files = match.group(1).replaceAll("\"","").replaceAll(".webp", "").split(",");
 		}
 		for(String file:files)
 		{

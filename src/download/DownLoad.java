@@ -52,7 +52,7 @@ public class DownLoad implements Runnable{
 		for(String path : PicPath)
 		{
 			//System.out.println(Thread.currentThread().getName() + "开始下载第" + index + "P");
-			result = (new SaveImg(path, dir.getAbsolutePath() + "/", index + ".webp")).SavePicture();
+			result = (new SaveImg(path, dir.getAbsolutePath() + "/", index + ".jpg")).SavePicture();
 			if(0 == result)
 			{
 				//TODO 后续写入到日志当中
