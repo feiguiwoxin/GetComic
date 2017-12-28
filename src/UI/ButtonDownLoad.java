@@ -6,16 +6,16 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import DownLoad.DLControl;
-
 @SuppressWarnings("serial")
 public class ButtonDownLoad extends JButton{
-
-	private DLControl dlc = new DLControl();
-	private SelectThread select = new SelectThread();
-	
 	private boolean DLState = false;
-
+	private PanelControl pc= null;
+	
+	public void setControl(PanelControl pc)
+	{
+		this.pc = pc;
+	}
+	
 	public ButtonDownLoad()
 	{
 		this.setText("下载");
@@ -27,11 +27,15 @@ public class ButtonDownLoad extends JButton{
 			{
 				if(ButtonDownLoad.this.isEnabled() && ButtonDownLoad.this.getText().equals("下载"))
 				{
-					dlc.setPoolSize((int)Math.pow(2, select.getSelectedIndex()) * 4);
-					ButtonDownLoad.this.setEnabled(false);
-					ButtonDownLoad.this.setText("下载中");
+					ButtonDownLoad.this.setText("中断");
 					DLState = true;
-					//dlc.ThreadControl();
+					boolean result = pc.StartDL(ButtonDownLoad.this);
+					if(false == result)
+					{
+						ButtonDownLoad.this.setEnabled(true);
+						ButtonDownLoad.this.setText("下载");
+						DLState = false;
+					}					
 				}
 				else if(!ButtonDownLoad.this.isEnabled() && ButtonDownLoad.this.getText().equals("下载"))
 				{
@@ -41,19 +45,20 @@ public class ButtonDownLoad extends JButton{
 				{
 					JOptionPane.showMessageDialog(null, "就算你再怎么点，也没办法加快下载速度呀-_-!", "错误说明", JOptionPane.CLOSED_OPTION);
 				}
+				else if(ButtonDownLoad.this.getText().equals("中断"))
+				{			
+					pc.InterputDL();
+				}	
 			}
 		});
-	}
-
-	public DLControl getDlc() {
-		return dlc;
 	}
 
 	public boolean getDLState() {
 		return DLState;
 	}
-
-	public SelectThread getSelect() {
-		return select;
+	
+	public void resetDLStat()
+	{
+		this.DLState = false;
 	}
 }

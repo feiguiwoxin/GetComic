@@ -3,23 +3,32 @@ package DownLoad;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import Config.LOG;
+import GetComic.Chapter;
 import GetComic.GetPicture;
 import GetComic.SaveImg;
+import UI.FrameComic;
 
 public class DLThread implements Runnable{
 	private String html = null;
 	private String title = null;
 	private String path = null;
+	private FrameComic fc = null;
+	private int len = 0;
+	private Chapter chapter = null;
 	
-	public DLThread(String html,String title,String path)
+	public DLThread(Chapter chapter,String path)
 	{
-		this.html = html;
-		this.title = title;
+		this.chapter = chapter;
+		this.html = chapter.getHtml();
+		this.title = chapter.getTitle();
 		this.path = path;
 		processTitle();
+	}
+	
+	public void setFC(FrameComic fc)
+	{
+		this.fc = fc;
 	}
 	
 	@Override
@@ -45,11 +54,14 @@ public class DLThread implements Runnable{
 			return;
 		}
 		
+		len = PicPath.size();
 		int index = 1;
 		int result = 0;
 		for(String path : PicPath)
 		{
 			//System.out.println(Thread.currentThread().getName() + "开始下载第" + index + "P");
+			
+			fc.UpdateDLinfo(chapter, index, len);
 			result = (new SaveImg(path, dir.getAbsolutePath() + "/", index + ".jpg")).SavePicture();
 			if(0 == result)
 			{
@@ -58,12 +70,13 @@ public class DLThread implements Runnable{
 			}
 			index ++;
 		}
+		
+		fc.FinishDl(chapter);
 	}
 	//一些带奇怪符号的名称可能会导致创建文件夹失败，所以需要进行预处理
 	private void processTitle()
 	{
-		title = title.replaceAll("[\\^%&',;=?$]+", "");
+		title = title.replaceAll("[\\^%&',.;=?$]+", "");
 		System.out.println(title);
 	}
-
 }
