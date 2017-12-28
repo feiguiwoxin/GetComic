@@ -66,6 +66,11 @@ public class DLThread implements Runnable{
 				LOG.log("下载图片地址失败，需要重新适配:" + path);
 				return;
 			}
+			else if(2 == result)
+			{
+				return;
+			}
+			
 			index ++;
 		}
 		

@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 import Config.LOG;
 import DownLoad.DLControl;
+import UI.FrameComic;
+import UI.PanelControl;
 
 public class Start {
 
@@ -37,6 +39,12 @@ public class Start {
 //			}
 //			
 //		}
+		PanelControl pc = new PanelControl();
+		FrameComic fc = new FrameComic(pc);
+		DLControl dlc = new DLControl(fc);
+		pc.setDlc(dlc);
+		fc.setVisible(true);
+		
 	}
 }
 
