@@ -18,6 +18,7 @@ public class DLControl {
 	private String FilePath = null;
 	private FrameComic fc = null;
 	private ExecutorService fixpool = null;
+	private ArrayList<DLThread> Threads = new ArrayList<DLThread>();
 	
 	public boolean AnalyChapter()
 	{
@@ -34,6 +35,14 @@ public class DLControl {
 	
 	public void InterputDL()
 	{
+		if(null != fixpool)
+		{
+			fixpool.shutdownNow();
+			for(DLThread thread : Threads)
+			{
+				thread.setInterrput();		
+			}
+		}
 		fc.ActiveAllbox();
 	}
 	
@@ -45,6 +54,7 @@ public class DLControl {
 	public boolean StartDL(int poolsize)
 	{
 		ArrayList<Chapter> Chapters = fc.getDLInfo();
+		Threads.clear();
 		if(fixpool == null)
 		{
 			PoolSize = poolsize;
@@ -92,10 +102,10 @@ public class DLControl {
 		{	
 			DLThread dl = new DLThread(c, HeadDir.getAbsolutePath());
 			dl.setFC(fc);
+			Threads.add(dl);
 			fixpool.execute(dl);	
 		}
 		
-		//fixpool.shutdown();
 		return true;
 	}
 

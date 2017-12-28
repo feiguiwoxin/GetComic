@@ -23,7 +23,7 @@ public class ButtonDownLoad extends JButton{
 		this.addMouseListener(new MouseAdapter()
 		{
 			@Override
-			public void mouseClicked(MouseEvent e)
+			public void mousePressed(MouseEvent e)
 			{
 				if(ButtonDownLoad.this.isEnabled() && ButtonDownLoad.this.getText().equals("обть"))
 				{

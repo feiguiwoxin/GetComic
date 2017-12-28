@@ -8,11 +8,14 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.swing.JOptionPane;
+
+import Config.LOG;
 //该类传入一个图片的地址，用于保存该图片
 public class SaveImg {
 	private String UrlAdd = null;
 	private String Path = null;
 	private String FileName = null;
+	private boolean interrput = false;
 	
 	public SaveImg(String UrlAdd, String Path, String FileName)
 	{
@@ -34,12 +37,19 @@ public class SaveImg {
 		try {
 			try {
 				fop = new FileOutputStream(file);
+				if(interrput) fop.close();
 				fop.write(imgData);
 				fop.flush();
-			} catch (Exception e) {
-				JOptionPane.showConfirmDialog(null, "保存文件失败，请检查配置文件夹或磁盘空间是否已满！", "错误提示", 
-												JOptionPane.CLOSED_OPTION);
-				e.printStackTrace();
+			} catch (IOException e) {
+				if(!interrput)
+				{
+					LOG.log("保存文件失败，请检查配置文件夹或磁盘空间是否已满！" + file);
+					e.printStackTrace();
+				}
+				else
+				{
+					return 2;
+				}
 				return 0;
 			}
 			finally
@@ -47,7 +57,7 @@ public class SaveImg {
 				fop.close();
 			}
 		}
-		catch(Exception e)
+		catch(IOException e)
 		{
 			e.printStackTrace();
 		}
@@ -91,6 +101,11 @@ public class SaveImg {
 		out.close();
 		
 		return imgData;
+	}
+	
+	public void setInterrput()
+	{
+		interrput = true;
 	}
 
 }

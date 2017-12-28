@@ -16,6 +16,7 @@ public class DLThread implements Runnable{
 	private FrameComic fc = null;
 	private int len = 0;
 	private Chapter chapter = null;
+	private SaveImg currimg = null;
 	
 	public DLThread(Chapter chapter,String path)
 	{
@@ -33,18 +34,15 @@ public class DLThread implements Runnable{
 	
 	@Override
 	public void run() {
-		//System.out.println(Thread.currentThread().getName() + "开始下载" + title);
 		File dir = new File(path + "/" + title);
-		if(dir.exists() && dir.isDirectory())
+		if(!(dir.exists() && dir.isDirectory()))
 		{
-			dir.delete();
-		}
-		
-		if(!dir.mkdir())
-		{
-			LOG.log("创建章节文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在:" + dir.getAbsolutePath());
-			return;
-		}
+			if(!dir.mkdir())
+			{
+				LOG.log("创建章节文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在:" + dir.getAbsolutePath());
+				return;
+			}
+		}			
 		
 		ArrayList<String> PicPath = new GetPicture(html).getPicturePath();
 		
@@ -57,12 +55,12 @@ public class DLThread implements Runnable{
 		len = PicPath.size();
 		int index = 1;
 		int result = 0;
+		
 		for(String path : PicPath)
-		{
-			//System.out.println(Thread.currentThread().getName() + "开始下载第" + index + "P");
-			
+		{				
 			fc.UpdateDLinfo(chapter, index, len);
-			result = (new SaveImg(path, dir.getAbsolutePath() + "/", index + ".jpg")).SavePicture();
+			currimg = new SaveImg(path, dir.getAbsolutePath() + "/", index + ".jpg");
+			result = currimg.SavePicture();
 			if(0 == result)
 			{
 				LOG.log("下载图片地址失败，需要重新适配:" + path);
@@ -78,5 +76,10 @@ public class DLThread implements Runnable{
 	{
 		title = title.replaceAll("[\\^%&',.;=?$]+", "");
 		System.out.println(title);
+	}
+	
+	public void setInterrput()
+	{
+		currimg.setInterrput();
 	}
 }

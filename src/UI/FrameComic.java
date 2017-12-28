@@ -23,6 +23,7 @@ public class FrameComic extends JFrame{
 	CheckBoxAll CheckAll = null;
 	private int TaskNum = 0;
 	PanelControl pc = null;
+	JScrollPane scrollpane = null;
 	
 	public FrameComic(PanelControl pc)
 	{
@@ -50,7 +51,7 @@ public class FrameComic extends JFrame{
 	{
 		JpScroll = new JPanel();
 		JpScroll.setLayout(new BoxLayout(JpScroll, BoxLayout.Y_AXIS));
-		JScrollPane scrollpane = new JScrollPane(JpScroll);
+		scrollpane = new JScrollPane(JpScroll);
 		scrollpane.getVerticalScrollBar().setUnitIncrement(15);
 		scrollpane.setBounds(5, 45, 430, 400);				
 		con.add(scrollpane);		
@@ -59,6 +60,7 @@ public class FrameComic extends JFrame{
 	public void addChapters(ArrayList<Chapter> Chapters)
 	{
 		JpScroll.removeAll();
+		scrollpane.getVerticalScrollBar().setValue(0);
 		Boxs.clear();
 		CheckAll = new CheckBoxAll("ȫѡ", this);
 		JpScroll.add(CheckAll);
