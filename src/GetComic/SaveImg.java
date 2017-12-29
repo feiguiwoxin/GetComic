@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import javax.swing.JOptionPane;
 
-import Config.LOG;
 //该类传入一个图片的地址，用于保存该图片
 public class SaveImg {
 	private String UrlAdd = null;
@@ -27,23 +25,33 @@ public class SaveImg {
 	public int SavePicture()
 	{
 		if(null == Path || null == FileName) return 0;
+		//提前判断文件是否存在，如果存在直接跳过下载，加快续传速度
+		File file = new File(Path + FileName);
+		if(file.exists())
+		{
+			return 1;
+		}
 		
 		byte[] imgData = getImgData();
 		if(null == imgData) return 0;
 		
-		File file = new File(Path + FileName);
 		FileOutputStream fop = null;
-		if(file.exists()) file.delete();
+		
 		try {
 			try {
 				fop = new FileOutputStream(file);
-				if(interrput) fop.close();
+				if(interrput) 
+				{
+					fop.close();
+					file.delete();
+				}
+				
 				fop.write(imgData);
 				fop.flush();
 			} catch (IOException e) {
 				if(!interrput)
 				{
-					LOG.log("保存文件失败，请检查配置文件夹或磁盘空间是否已满！" + file);
+					System.out.println("保存文件失败，请检查配置文件夹或磁盘空间是否已满！" + file);
 					e.printStackTrace();
 				}
 				else

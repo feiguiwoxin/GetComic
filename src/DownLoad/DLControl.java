@@ -7,7 +7,6 @@ import java.util.concurrent.Executors;
 
 import javax.swing.JOptionPane;
 
-import Config.LOG;
 import GetComic.Chapter;
 import GetComic.GetChapter;
 import UI.FrameComic;
@@ -26,7 +25,6 @@ public class DLControl {
 		ArrayList<Chapter> Chapters = new GetChapter(ComicNum).getChapter();
 		if(Chapters.isEmpty())
 		{
-			LOG.log("分解章节失败，请检查漫画ID是否正确：" + ComicNum);
 			return false;
 		}
 		fc.addChapters(Chapters);
@@ -85,13 +83,13 @@ public class DLControl {
 	
 	public boolean ThreadControl(ArrayList<Chapter> Chapters)
 	{	
-		File HeadDir = new File("/Comic/" + ComicNum);
+		File HeadDir = new File(FilePath + "/" + ComicNum);
 		
 		if(!(HeadDir.exists() && HeadDir.isDirectory()))
 		{
 			if(!HeadDir.mkdirs())
 			{
-				LOG.log("创建初始文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在:" + HeadDir.getAbsolutePath());
+				JOptionPane.showMessageDialog(null, "创建初始文件夹失败，请检查磁盘是否已满/地址错误:"+ HeadDir.getAbsolutePath(), "错误说明", JOptionPane.CLOSED_OPTION);
 				return false;
 			}
 		}
@@ -111,5 +109,9 @@ public class DLControl {
 
 	public void setComicNum(String comicNum) {
 		ComicNum = comicNum;
+	}
+
+	public void setFilePath(String filePath) {
+		FilePath = filePath;
 	}
 }

@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import javax.swing.JOptionPane;
 //工具函数，用于获取网页的源代码，注意，只能获取到动态JS执行之前的网页源代码
 public class GetHtml {
 	

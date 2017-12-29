@@ -15,6 +15,8 @@ public class PanelControl extends JPanel{
 	private ButtonAnaly buttonanaly = new ButtonAnaly();
 	private SelectThread select = new SelectThread();
 	private DLControl dlc = null;
+	private ButtonFilePath filepath = new ButtonFilePath();
+	private TextFileText filetext = new TextFileText();
 	
 	public PanelControl()
 	{
@@ -31,6 +33,7 @@ public class PanelControl extends JPanel{
 	{
 		buttonDl.setControl(this);
 		buttonanaly.setControl(this);
+		filepath.setControl(this);
 	}
 	
 	private void initLayout()
@@ -76,6 +79,7 @@ public class PanelControl extends JPanel{
 		if(buttonDl != this.buttonDl) return false;
 		buttonanaly.setEnabled(false);
 		select.setEnabled(false);
+		dlc.setFilePath(filetext.getText());
 		boolean result = dlc.StartDL((int)Math.pow(2, select.getSelectedIndex()) * 4);
 		if(false == result)
 		{
@@ -99,5 +103,23 @@ public class PanelControl extends JPanel{
 	{
 		ResetCompnent();
 		dlc.InterputDL();
+	}
+	
+	public String getFilePath()
+	{
+		return filetext.getText();
+	}
+	
+	public void setFilePath(String filepath)
+	{
+		filetext.setText(filepath);
+	}
+
+	public ButtonFilePath getButtonFilePath() {
+		return filepath;
+	}
+
+	public TextFileText getTextFileText() {
+		return filetext;
 	}
 }

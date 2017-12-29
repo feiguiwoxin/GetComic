@@ -3,7 +3,6 @@ package DownLoad;
 import java.io.File;
 import java.util.ArrayList;
 
-import Config.LOG;
 import GetComic.Chapter;
 import GetComic.GetPicture;
 import GetComic.SaveImg;
@@ -39,7 +38,7 @@ public class DLThread implements Runnable{
 		{
 			if(!dir.mkdir())
 			{
-				LOG.log("创建章节文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在:" + dir.getAbsolutePath());
+				System.out.println("创建章节文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在:" + dir.getAbsolutePath());
 				return;
 			}
 		}			
@@ -48,7 +47,7 @@ public class DLThread implements Runnable{
 		
 		if(PicPath.isEmpty())
 		{
-			LOG.log("解析图片地址失败，需要重新适配:" + html);
+			System.out.println("解析图片地址失败，需要重新适配:" + html);
 			return;
 		}
 		
@@ -63,7 +62,7 @@ public class DLThread implements Runnable{
 			result = currimg.SavePicture();
 			if(0 == result)
 			{
-				LOG.log("下载图片地址失败，需要重新适配:" + path);
+				System.out.println("下载图片地址失败，需要重新适配:" + path);
 				return;
 			}
 			else if(2 == result)
@@ -80,7 +79,6 @@ public class DLThread implements Runnable{
 	private void processTitle()
 	{
 		title = title.replaceAll("[\\^%&',.;=?$]+", "");
-		System.out.println(title);
 	}
 	
 	public void setInterrput()

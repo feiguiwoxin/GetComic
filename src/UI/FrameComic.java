@@ -45,7 +45,22 @@ public class FrameComic extends JFrame{
 		con.add(pc);
 		
 		setScrollUI(con);
+		setFileUI(con);
 	}	
+	
+	private void setFileUI(Container con)
+	{
+		JPanel filepanel = new JPanel();
+		filepanel.setBounds(5, 45, 430, 30);
+		filepanel.setBackground(new Color(144, 238, 144));
+		filepanel.setLayout(null);
+		
+		filepanel.add(pc.getTextFileText());
+		filepanel.add(pc.getButtonFilePath());
+			
+		con.add(filepanel);
+		
+	}
 	
 	private void setScrollUI(Container con)
 	{
@@ -53,7 +68,7 @@ public class FrameComic extends JFrame{
 		JpScroll.setLayout(new BoxLayout(JpScroll, BoxLayout.Y_AXIS));
 		scrollpane = new JScrollPane(JpScroll);
 		scrollpane.getVerticalScrollBar().setUnitIncrement(15);
-		scrollpane.setBounds(5, 45, 430, 400);				
+		scrollpane.setBounds(5, 80, 430, 365);				
 		con.add(scrollpane);		
 	}
 	
@@ -180,6 +195,12 @@ public class FrameComic extends JFrame{
 		
 		JpScroll.updateUI();
 		return;
+	}
+	
+	public void InterrputDL()
+	{
+		ActiveAllbox();
+		this.TaskNum = 0;
 	}
 }
 
