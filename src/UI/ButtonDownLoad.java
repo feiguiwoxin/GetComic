@@ -47,7 +47,7 @@ public class ButtonDownLoad extends JButton{
 				}
 				else if(ButtonDownLoad.this.getText().equals("ÖÐ¶Ï"))
 				{			
-					pc.InterputDL();
+					pc.InterrputDL();
 				}	
 			}
 		});

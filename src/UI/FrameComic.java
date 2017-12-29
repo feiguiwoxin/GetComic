@@ -93,6 +93,7 @@ public class FrameComic extends JFrame{
 	
 	public ArrayList<Chapter> getDLInfo()
 	{
+		this.TaskNum = 0;
 		ArrayList<Chapter> info = new ArrayList<Chapter>();
 		Set<Chapter> keys = Boxs.keySet();
 		for(Chapter key : keys)

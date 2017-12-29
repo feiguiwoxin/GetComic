@@ -31,7 +31,7 @@ public class DLControl {
 		return true;
 	}
 
-	public void InterputDL()
+	public void InterrputDL()
 	{
 		if(null != fixpool)
 		{
@@ -41,7 +41,7 @@ public class DLControl {
 				thread.setInterrput();		
 			}
 		}
-		fc.ActiveAllbox();
+		fc.InterrputDL();
 	}
 	
 	public DLControl(FrameComic fc)

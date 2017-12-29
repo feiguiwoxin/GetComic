@@ -99,10 +99,10 @@ public class PanelControl extends JPanel{
 		select.setEnabled(true);
 	}
 	
-	public void InterputDL()
+	public void InterrputDL()
 	{
 		ResetCompnent();
-		dlc.InterputDL();
+		dlc.InterrputDL();
 	}
 	
 	public String getFilePath()
