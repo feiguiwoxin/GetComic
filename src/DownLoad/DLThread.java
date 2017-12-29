@@ -52,13 +52,14 @@ public class DLThread implements Runnable{
 		}
 		
 		len = PicPath.size();
+		int numlen = getNumLen(len);
 		int index = 1;
 		int result = 0;
 		
 		for(String path : PicPath)
 		{				
 			fc.UpdateDLinfo(chapter, index, len);
-			currimg = new SaveImg(path, dir.getAbsolutePath() + "/", index + ".jpg");
+			currimg = new SaveImg(path, dir.getAbsolutePath() + "/", String.format("%0" + numlen + "d", index) + ".jpg");
 			result = currimg.SavePicture();
 			if(0 == result)
 			{
@@ -84,5 +85,19 @@ public class DLThread implements Runnable{
 	public void setInterrput()
 	{
 		currimg.setInterrput();
+	}
+	
+	private int getNumLen(int num)
+	{
+		int len = 0;
+		
+		do
+		{
+			num = num /10;
+			len ++;
+		}
+		while(num != 0);
+		
+		return len;
 	}
 }
