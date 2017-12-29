@@ -1,6 +1,5 @@
 package GetComic;
 
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,13 +49,13 @@ public class GetPicture {
 		
 		return;
 	}
-	//此处直接调用修改自源HTML的脚本来进行解码
+	//此处直接调用修改自源HTML的脚本来进行解码,另外，此处采用eval(String)而不用eval(FileReader)是因为打包成JAR后无法使用后者
 	private void paraseInfo(String para1, int para2, int para3, String para4, int para5)
 	{
 		ScriptEngineManager engineManager = new ScriptEngineManager();
 		ScriptEngine engine = engineManager.getEngineByName("js");
 		try {
-			engine.eval(new FileReader(ValidConfig.JSPath));
+			engine.eval(ValidConfig.JSFile);
 			Invocable inv = (Invocable)engine;
 			String ParkerInfo = (String)inv.invokeFunction("parase", para1,para2,para3,para4,para5);
 			getPath(ParkerInfo);

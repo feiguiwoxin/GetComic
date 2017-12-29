@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import GetComic.Chapter;
 import GetComic.GetChapter;
 import UI.FrameComic;
-
+//这个类为下载控制中心，主要用于与面板的通信和下载线程的控制
 public class DLControl {
 	private String ComicNum = null;
 	private int PoolSize = 0;
@@ -18,7 +18,7 @@ public class DLControl {
 	private FrameComic fc = null;
 	private ExecutorService fixpool = null;
 	private ArrayList<DLThread> Threads = new ArrayList<DLThread>();
-	
+	//获取网页的章节
 	public boolean AnalyChapter()
 	{
 		if(null == ComicNum) return false;
@@ -30,7 +30,7 @@ public class DLControl {
 		fc.addChapters(Chapters);
 		return true;
 	}
-	
+
 	public void InterputDL()
 	{
 		if(null != fixpool)

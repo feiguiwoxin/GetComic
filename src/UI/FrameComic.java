@@ -5,6 +5,7 @@ import GetComic.Chapter;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Set;
@@ -35,7 +36,8 @@ public class FrameComic extends JFrame{
 	{
 		this.setTitle("一键获取漫画工具");
 		this.setResizable(false);
-		this.setIconImage(ValidConfig.Icon);
+		//才去如此奇怪的读取方式是为了在JAR中能读取到img
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("Comic.png")));
 		this.setSize(ValidConfig.ComicW, ValidConfig.ComicH);
 		this.setLocation((ValidConfig.WinW - ValidConfig.ComicW) / 2, (ValidConfig.WinH - ValidConfig.ComicH) / 2);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -18,7 +18,7 @@ public class TextComicID extends JTextField{
 		this.addMouseListener(new MouseAdapter()
 		{
 			@Override
-			public void mouseClicked(MouseEvent e)
+			public void mousePressed(MouseEvent e)
 			{
 				if(TextComicID.this.getText().equals("ÇëÊäÈëÂş»­ID"))
 				{

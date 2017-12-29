@@ -1,17 +1,39 @@
 package Config;
 
-import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-import javax.swing.ImageIcon;
-
-import Start.Start;
-
+//这个类用于记录一些常用的变量
 public class ValidConfig {
 	public static final int WinH = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	public static final int WinW = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	public static final int ComicH = 480;
 	public static final int ComicW = 450;
-	public static final Image Icon = new ImageIcon(Start.class.getResource("/Comic.png").getPath()).getImage();
-	public static final String JSPath = Start.class.getResource("/config.js").getPath();
+	public static String JSFile = "";
+	
+	static
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(Start.Start.class.getResourceAsStream("/config.js")));
+		String line = null;
+		
+		try {
+			try{
+				while((line = br.readLine()) != null)
+				{
+					JSFile = JSFile.concat(line);
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				br.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
