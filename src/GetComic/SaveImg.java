@@ -76,20 +76,30 @@ public class SaveImg {
 	private byte[] getImgData()
 	{
 		byte[] ImgData = null;
+		//如果连接失败，有3次重连机会
+		int ConnectTime = 3;
 		if(null == UrlAdd) return null;
-		try {
-			URL url = new URL(UrlAdd);
-			HttpURLConnection urlcon = (HttpURLConnection)url.openConnection();
-			urlcon.setRequestProperty("Referer", "http://www.manhuagui.com/");
-			urlcon.setRequestMethod("GET");
-			urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/57.0");
-			urlcon.setConnectTimeout(5*1000);
-			
-			ImgData = GetbyteFromStream(urlcon.getInputStream());
-			return ImgData;
-		} catch (Exception e) {
-			e.printStackTrace();
+		
+		while(ConnectTime > 0)
+		{
+			try {
+				URL url = new URL(UrlAdd);
+				HttpURLConnection urlcon = (HttpURLConnection)url.openConnection();
+				urlcon.setRequestProperty("Referer", "http://www.manhuagui.com/");
+				urlcon.setRequestMethod("GET");
+				urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/57.0");
+				urlcon.setConnectTimeout(3 * 1000);
+				urlcon.setReadTimeout(10 * 1000);
+				
+				ImgData = GetbyteFromStream(urlcon.getInputStream());
+				return ImgData;
+			} catch (Exception e) {
+				e.printStackTrace();
+				ConnectTime --;
+				continue;
+			}
 		}
+		
 		return null;
 	}
 	//将图片的Http流转化为二进制流

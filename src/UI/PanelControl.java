@@ -71,7 +71,8 @@ public class PanelControl extends JPanel{
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, "漫画ID错误或网站已禁止该漫画，请检查", "错误说明", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null, "可能的错误说明:\n1.漫画ID错误或网站已禁止该漫画，请检查。\n2.有可能是因为你下载过多导致被禁止IP了哟(尤其是网站上的版权受限漫画，下载过多特别容易被察觉而禁止)，\n可以尝试ping www.manhuagui.com来确认。如果ping不通而通过手机无线网络却可以访问就基本确实是被封IP了。\n(可以重新拨号或重启光钎盒子来换IP)", 
+					"错误说明", JOptionPane.CLOSED_OPTION);
 		}
 		
 		return;
