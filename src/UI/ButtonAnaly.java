@@ -4,6 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
 public class ButtonAnaly extends JButton{
@@ -22,7 +23,14 @@ public class ButtonAnaly extends JButton{
 			@Override
 			public void mousePressed(MouseEvent e)
 			{
-				pc.StartAnaly(ButtonAnaly.this);
+				if(ButtonAnaly.this.isEnabled())
+				{	
+					pc.StartAnaly(ButtonAnaly.this);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "还在分析呐，莫急~~", "说明", JOptionPane.CLOSED_OPTION);
+				}
 			}
 		});
 	}

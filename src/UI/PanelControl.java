@@ -64,6 +64,7 @@ public class PanelControl extends JPanel{
 		}
 		
 		dlc.setComicNum(ComicId.getText());
+		
 		if(dlc.AnalyChapter())
 		{
 			buttonDl.setEnabled(true);
@@ -72,6 +73,8 @@ public class PanelControl extends JPanel{
 		{
 			JOptionPane.showMessageDialog(null, "漫画ID错误或网站已禁止该漫画，请检查", "错误说明", JOptionPane.CLOSED_OPTION);
 		}
+		
+		return;
 	}
 	
 	public boolean StartDL(ButtonDownLoad buttonDl)

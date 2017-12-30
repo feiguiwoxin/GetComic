@@ -178,6 +178,7 @@ public class FrameComic extends JFrame{
 		{
 			pc.ResetCompnent();
 			ActiveAllbox();
+			Toolkit.getDefaultToolkit().beep();
 			JOptionPane.showMessageDialog(null, "下载完成^_^", "说明", JOptionPane.CLOSED_OPTION);
 		}
 	}
