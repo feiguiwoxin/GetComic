@@ -70,7 +70,7 @@ public class PanelControl extends JPanel{
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, "漫画ID错误，请检查", "错误说明", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null, "漫画ID错误或网站已禁止该漫画，请检查", "错误说明", JOptionPane.CLOSED_OPTION);
 		}
 	}
 	

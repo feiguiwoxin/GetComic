@@ -18,11 +18,15 @@ public class DLControl {
 	private FrameComic fc = null;
 	private ExecutorService fixpool = null;
 	private ArrayList<DLThread> Threads = new ArrayList<DLThread>();
+	private String BookName = null;
 	//获取网页的章节
 	public boolean AnalyChapter()
 	{
 		if(null == ComicNum) return false;
-		ArrayList<Chapter> Chapters = new GetChapter(ComicNum).getChapter();
+		GetChapter  getchapter =  new GetChapter(ComicNum);
+		ArrayList<Chapter> Chapters = getchapter.getChapter();
+		BookName = getchapter.getBookName();
+		
 		if(Chapters.isEmpty())
 		{
 			return false;
@@ -83,7 +87,7 @@ public class DLControl {
 	
 	public boolean ThreadControl(ArrayList<Chapter> Chapters)
 	{	
-		File HeadDir = new File(FilePath + "/" + ComicNum);
+		File HeadDir = new File(FilePath + "/" +  BookName + "(" + ComicNum + ")");
 		
 		if(!(HeadDir.exists() && HeadDir.isDirectory()))
 		{

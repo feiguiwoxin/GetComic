@@ -205,4 +205,9 @@ function parase(p, a, c, y, e)
 	return getcinfo(p, a, c, depressBase64(y, "|"), e, {});
 }
 
+function getChapter(str)
+{
+	return LZString.decompressFromBase64(str);
+}
+
 
