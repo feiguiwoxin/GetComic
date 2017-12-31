@@ -77,8 +77,8 @@ public class SaveImg {
 				urlcon.setRequestProperty("Referer", "http://www.manhuagui.com/");
 				urlcon.setRequestMethod("GET");
 				urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; бн) Gecko/20100101 Firefox/57.0");
-				urlcon.setConnectTimeout(10 * 1000);
-				urlcon.setReadTimeout(15 * 1000);
+				urlcon.setConnectTimeout(5 * 1000);
+				urlcon.setReadTimeout(8 * 1000);
 				
 				ImgData = GetbyteFromStream(urlcon.getInputStream());
 				return ImgData;
