@@ -56,11 +56,11 @@ public class FrameComic extends JFrame{
 	private void setHelpUI(Container con)
 	{	
 		JTextArea ta = new JTextArea();
-		ta.setEnabled(false);
+		ta.setEditable(false);
 		ta.setLineWrap(true);
 		ta.setFont(new Font("宋体", Font.PLAIN, 15));
 		ta.setDisabledTextColor(Color.BLACK);
-		ta.setText("本软件只能抓取到http://www.manhuagui.com/该网站的漫画数据。\n" + 
+		ta.setText("本软件只能抓取到http://www.manhuagui.com/该网站的漫画数据(此文本框内可以用CTRL+C进行复制)。\n" + 
 				"1.漫画ID是什么？\n" + 
 				"进入http://www.manhuagui.com/网站后，搜索到你想要的漫画，点击进入漫画页面。比如http://www.manhuagui.com/comic/1626/这个漫画，则漫画ID就是1626。\n"
 				+ "另外即使是网页显示因版权而被屏蔽的漫画也可以试一下哦，但切记不要一天之内下载过多此类被禁漫画，很容易被网站后台发现而封IP。\n" + 
