@@ -160,7 +160,7 @@ public class FrameComic extends JFrame{
 		box.updateUI();
 	}
 	
-	public void FinishDl(Chapter chapter)
+	public void FinishDl(Chapter chapter, int type)
 	{
 		TaskNum --;
 		JCheckBox box = Boxs.get(chapter);
@@ -171,9 +171,17 @@ public class FrameComic extends JFrame{
 			currtext = currtext.substring(0, index - 1);
 		}
 		
-		box.setText(currtext + " 下载完成喽~");
+		if(type == 1)
+		{
+			box.setText(currtext + " 下载完成喽~");
+			box.setForeground(Color.RED);
+		}
+		else if(type == 0)
+		{
+			box.setText(currtext + " 任务进展:任务失败,可以尝试再次下载，不会影响已下图片" );
+		}
+		
 		box.updateUI();
-		box.setForeground(Color.RED);
 		if(TaskNum == 0)
 		{
 			pc.ResetCompnent();

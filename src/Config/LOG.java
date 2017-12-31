@@ -3,6 +3,7 @@ package Config;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -29,7 +30,7 @@ public class LOG {
 		}
 		
 		lognum ++;
-		logbuff = logbuff.concat(str + "\r\n");
+		logbuff = logbuff.concat("info:(" + str + ")\r\n");
 		
 		if(lognum > 20 || str.length() > 1024)
 		{
@@ -37,6 +38,13 @@ public class LOG {
 			lognum = 0;
 			logbuff = "";
 		}
+	}
+	
+	public static void loginDate()
+	{
+		logbuff = logbuff.concat(new Date().toString() + "\r\n");
+		logintofile();
+		logbuff = "";
 	}
 	
 	private static void logintofile()

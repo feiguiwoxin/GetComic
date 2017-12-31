@@ -33,7 +33,7 @@ public class GetHtml {
 			}
 			urlRead.close();
 		} catch (Exception e) {
-			LOG.log(e.getMessage(), LOG.NormalType);
+			LOG.log("获取网址信息错误:" + UrlAdd + " e:" + e.getMessage(), LOG.NormalType);
 			e.printStackTrace();
 			return null;
 		}

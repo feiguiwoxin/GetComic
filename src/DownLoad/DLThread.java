@@ -56,6 +56,7 @@ public class DLThread implements Runnable{
 		if(PicPath.isEmpty())
 		{
 			LOG.log("解析图片地址失败:" + html, LOG.NormalType);
+			fc.FinishDl(chapter, 0);
 			return;
 		}
 		
@@ -78,13 +79,14 @@ public class DLThread implements Runnable{
 			if(0 == result)
 			{
 				LOG.log("下载图片地址失败:" + path, LOG.NormalType);
+				fc.FinishDl(chapter, 0);
 				return;
 			}
 			
 			index ++;
 		}
 		
-		fc.FinishDl(chapter);
+		fc.FinishDl(chapter, 1);
 	}
 	//一些带奇怪符号的名称可能会导致创建文件夹失败，所以需要进行预处理
 	private void processTitle()

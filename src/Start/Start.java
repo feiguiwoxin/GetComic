@@ -1,6 +1,5 @@
 package Start;
 
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,7 +12,7 @@ public class Start {
 
 	public static void main(String[] args) throws InterruptedException
 	{
-		LOG.log(new Date().toString(), LOG.NormalType);
+		LOG.loginDate();
 		PanelControl pc = new PanelControl();
 		FrameComic fc = new FrameComic(pc);
 		DLControl dlc = new DLControl(fc);
