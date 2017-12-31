@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 public class ValidConfig {
 	public static final int WinH = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	public static final int WinW = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-	public static final int ComicH = 480;
+	public static final int ComicH = 600;
 	public static final int ComicW = 450;
 	public static String JSFile = "";
 	public static boolean RunThread = true;
