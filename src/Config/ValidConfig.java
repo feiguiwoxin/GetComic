@@ -11,6 +11,7 @@ public class ValidConfig {
 	public static final int ComicH = 480;
 	public static final int ComicW = 450;
 	public static String JSFile = "";
+	public static boolean RunThread = true;
 	
 	static
 	{

@@ -3,6 +3,7 @@ package DownLoad;
 import java.io.File;
 import java.util.ArrayList;
 
+import Config.ValidConfig;
 import GetComic.Chapter;
 import GetComic.GetPicture;
 import GetComic.SaveImg;
@@ -57,17 +58,20 @@ public class DLThread implements Runnable{
 		int result = 0;
 		
 		for(String path : PicPath)
-		{				
+		{	
+			
 			fc.UpdateDLinfo(chapter, index, len);
 			currimg = new SaveImg(path, dir.getAbsolutePath() + "/", String.format("%0" + numlen + "d", index) + ".jpg");
 			result = currimg.SavePicture();
+			
+			if(!ValidConfig.RunThread)
+			{
+				return;
+			}
+			
 			if(0 == result)
 			{
 				System.out.println("下载图片地址失败，需要重新适配:" + path);
-				return;
-			}
-			else if(2 == result)
-			{
 				return;
 			}
 			
@@ -80,11 +84,6 @@ public class DLThread implements Runnable{
 	private void processTitle()
 	{
 		title = title.replaceAll("[\\^%&',.;=?$]+", "");
-	}
-	
-	public void setInterrput()
-	{
-		currimg.setInterrput();
 	}
 	
 	private int getNumLen(int num)

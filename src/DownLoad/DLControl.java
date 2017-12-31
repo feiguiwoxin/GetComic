@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 
 import javax.swing.JOptionPane;
 
+import Config.ValidConfig;
 import GetComic.Chapter;
 import GetComic.GetChapter;
 import UI.FrameComic;
@@ -17,7 +18,6 @@ public class DLControl {
 	private String FilePath = null;
 	private FrameComic fc = null;
 	private ExecutorService fixpool = null;
-	private ArrayList<DLThread> Threads = new ArrayList<DLThread>();
 	private String BookName = null;
 	//获取网页的章节
 	public boolean AnalyChapter()
@@ -40,10 +40,7 @@ public class DLControl {
 		if(null != fixpool)
 		{
 			fixpool.shutdownNow();
-			for(DLThread thread : Threads)
-			{
-				thread.setInterrput();		
-			}
+			ValidConfig.RunThread = false;	
 		}
 		fc.InterrputDL();
 	}
@@ -56,7 +53,6 @@ public class DLControl {
 	public boolean StartDL(int poolsize)
 	{
 		ArrayList<Chapter> Chapters = fc.getDLInfo();
-		Threads.clear();
 		if(fixpool == null)
 		{
 			PoolSize = poolsize;
@@ -104,7 +100,6 @@ public class DLControl {
 		{	
 			DLThread dl = new DLThread(c, HeadDir.getAbsolutePath());
 			dl.setFC(fc);
-			Threads.add(dl);
 			fixpool.execute(dl);	
 		}
 		

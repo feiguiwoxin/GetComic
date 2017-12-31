@@ -13,7 +13,6 @@ public class SaveImg {
 	private String UrlAdd = null;
 	private String Path = null;
 	private String FileName = null;
-	private boolean interrput = false;
 	
 	public SaveImg(String UrlAdd, String Path, String FileName)
 	{
@@ -40,24 +39,10 @@ public class SaveImg {
 		try {
 			try {
 				fop = new FileOutputStream(file);
-				if(interrput) 
-				{
-					fop.close();
-					file.delete();
-				}
-				
 				fop.write(imgData);
 				fop.flush();
-			} catch (IOException e) {
-				if(!interrput)
-				{
-					System.out.println("保存文件失败，请检查配置文件夹或磁盘空间是否已满！" + file);
-					e.printStackTrace();
-				}
-				else
-				{
-					return 2;
-				}
+			} catch (Exception e) {
+				e.printStackTrace();
 				return 0;
 			}
 			finally
@@ -65,7 +50,7 @@ public class SaveImg {
 				fop.close();
 			}
 		}
-		catch(IOException e)
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -120,10 +105,4 @@ public class SaveImg {
 		
 		return imgData;
 	}
-	
-	public void setInterrput()
-	{
-		interrput = true;
-	}
-
 }

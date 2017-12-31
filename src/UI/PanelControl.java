@@ -81,6 +81,7 @@ public class PanelControl extends JPanel{
 	public boolean StartDL(ButtonDownLoad buttonDl)
 	{
 		if(buttonDl != this.buttonDl) return false;
+		
 		buttonanaly.setEnabled(false);
 		select.setEnabled(false);
 		dlc.setFilePath(filetext.getText());

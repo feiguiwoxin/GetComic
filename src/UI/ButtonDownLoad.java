@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import Config.ValidConfig;
+
 @SuppressWarnings("serial")
 public class ButtonDownLoad extends JButton{
 	private boolean DLState = false;
@@ -29,6 +31,7 @@ public class ButtonDownLoad extends JButton{
 				{
 					ButtonDownLoad.this.setText("ÖÐ¶Ï");
 					DLState = true;
+					ValidConfig.RunThread = true;
 					boolean result = pc.StartDL(ButtonDownLoad.this);
 					if(false == result)
 					{
