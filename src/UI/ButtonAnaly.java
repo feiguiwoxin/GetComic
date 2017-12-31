@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
 public class ButtonAnaly extends JButton{
@@ -25,11 +24,10 @@ public class ButtonAnaly extends JButton{
 			{
 				if(ButtonAnaly.this.isEnabled())
 				{	
+					ButtonAnaly.this.setText("正在分析...");
+					ButtonAnaly.this.setEnabled(false);
+					ButtonAnaly.this.paintImmediately(0, 0, ButtonAnaly.this.getWidth(), ButtonAnaly.this.getHeight());
 					pc.StartAnaly(ButtonAnaly.this);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, "还在分析呐，莫急~~", "说明", JOptionPane.CLOSED_OPTION);
 				}
 			}
 		});

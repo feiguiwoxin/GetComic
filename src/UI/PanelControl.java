@@ -5,7 +5,6 @@ import java.awt.GridLayout;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import DownLoad.DLControl;
 
 @SuppressWarnings("serial")
@@ -75,6 +74,8 @@ public class PanelControl extends JPanel{
 					"´íÎóËµÃ÷", JOptionPane.CLOSED_OPTION);
 		}
 		
+		buttonanaly.setText("·ÖÎö");
+		buttonanaly.setEnabled(true);
 		return;
 	}
 	
