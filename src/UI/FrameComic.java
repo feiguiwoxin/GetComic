@@ -36,7 +36,7 @@ public class FrameComic extends JFrame{
 	{
 		this.setTitle("一键获取漫画工具");
 		this.setResizable(false);
-		//才去如此奇怪的读取方式是为了在JAR中能读取到img
+		//采取如此奇怪的读取方式是为了在JAR中能读取到img
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("Comic.png")));
 		this.setSize(ValidConfig.ComicW, ValidConfig.ComicH);
 		this.setLocation((ValidConfig.WinW - ValidConfig.ComicW) / 2, (ValidConfig.WinH - ValidConfig.ComicH) / 2);

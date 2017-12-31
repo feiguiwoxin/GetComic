@@ -27,6 +27,7 @@ public class ValidConfig {
 			}
 			catch(Exception e)
 			{
+				LOG.log(e.getMessage(), LOG.NormalType);
 				e.printStackTrace();
 			}
 			finally
@@ -34,6 +35,7 @@ public class ValidConfig {
 				br.close();
 			}
 		} catch (Exception e) {
+			LOG.log(e.getMessage(), LOG.NormalType);
 			e.printStackTrace();
 		}
 	}

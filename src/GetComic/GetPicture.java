@@ -8,6 +8,7 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
+import Config.LOG;
 import Config.ValidConfig;
 
 public class GetPicture {
@@ -60,6 +61,7 @@ public class GetPicture {
 			String ParkerInfo = (String)inv.invokeFunction("parase", para1,para2,para3,para4,para5);
 			getPath(ParkerInfo);
 		} catch (Exception e) {
+			LOG.log(e.getMessage(), LOG.NormalType);
 			e.printStackTrace();
 		}	
 	}

@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import Config.LOG;
+
 //该类传入一个图片的地址，用于保存该图片
 public class SaveImg {
 	private String UrlAdd = null;
@@ -43,6 +45,7 @@ public class SaveImg {
 				fop.flush();
 			} catch (Exception e) {
 				e.printStackTrace();
+				LOG.log(e.getMessage(), LOG.NormalType);
 				return 0;
 			}
 			finally
@@ -52,6 +55,7 @@ public class SaveImg {
 		}
 		catch(Exception e)
 		{
+			LOG.log(e.getMessage(), LOG.NormalType);
 			e.printStackTrace();
 		}
 		
@@ -73,13 +77,14 @@ public class SaveImg {
 				urlcon.setRequestProperty("Referer", "http://www.manhuagui.com/");
 				urlcon.setRequestMethod("GET");
 				urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/57.0");
-				urlcon.setConnectTimeout(3 * 1000);
-				urlcon.setReadTimeout(10 * 1000);
+				urlcon.setConnectTimeout(10 * 1000);
+				urlcon.setReadTimeout(15 * 1000);
 				
 				ImgData = GetbyteFromStream(urlcon.getInputStream());
 				return ImgData;
 			} catch (Exception e) {
 				e.printStackTrace();
+				LOG.log(e.getMessage() + "ConnectTime:" + ConnectTime, LOG.NormalType);
 				ConnectTime --;
 				continue;
 			}

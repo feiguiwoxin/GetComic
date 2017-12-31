@@ -3,6 +3,7 @@ package DownLoad;
 import java.io.File;
 import java.util.ArrayList;
 
+import Config.LOG;
 import Config.ValidConfig;
 import GetComic.Chapter;
 import GetComic.GetPicture;
@@ -34,12 +35,18 @@ public class DLThread implements Runnable{
 	
 	@Override
 	public void run() {
+		
+		if(!ValidConfig.RunThread)
+		{
+			return;
+		}
+		
 		File dir = new File(path + "/" + title);
 		if(!(dir.exists() && dir.isDirectory()))
 		{
 			if(!dir.mkdir())
 			{
-				System.out.println("创建章节文件夹失败，请检查磁盘是否已满/地址错误/文件夹已存在:" + dir.getAbsolutePath());
+				LOG.log("创建章节文件夹失败，请检查磁盘是否已满/地址错误:" + dir.getAbsolutePath(), LOG.NormalType);
 				return;
 			}
 		}			
@@ -48,7 +55,7 @@ public class DLThread implements Runnable{
 		
 		if(PicPath.isEmpty())
 		{
-			System.out.println("解析图片地址失败，需要重新适配:" + html);
+			LOG.log("解析图片地址失败:" + html, LOG.NormalType);
 			return;
 		}
 		
@@ -58,8 +65,7 @@ public class DLThread implements Runnable{
 		int result = 0;
 		
 		for(String path : PicPath)
-		{	
-			
+		{				
 			fc.UpdateDLinfo(chapter, index, len);
 			currimg = new SaveImg(path, dir.getAbsolutePath() + "/", String.format("%0" + numlen + "d", index) + ".jpg");
 			result = currimg.SavePicture();
@@ -71,7 +77,7 @@ public class DLThread implements Runnable{
 			
 			if(0 == result)
 			{
-				System.out.println("下载图片地址失败，需要重新适配:" + path);
+				LOG.log("下载图片地址失败:" + path, LOG.NormalType);
 				return;
 			}
 			

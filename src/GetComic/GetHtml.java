@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+import Config.LOG;
+
 //工具函数，用于获取网页的源代码，注意，只能获取到动态JS执行之前的网页源代码
 public class GetHtml {
 	
@@ -31,6 +33,8 @@ public class GetHtml {
 			}
 			urlRead.close();
 		} catch (Exception e) {
+			LOG.log(e.getMessage(), LOG.NormalType);
+			e.printStackTrace();
 			return null;
 		}
 		return HttpInfo;

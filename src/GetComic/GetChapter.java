@@ -10,6 +10,7 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
+import Config.LOG;
 import Config.ValidConfig;
 //该类用于获取漫画的章节名和各章节的URL
 public class GetChapter {
@@ -64,6 +65,7 @@ public class GetChapter {
 				Invocable inv = (Invocable)engine;
 				HtmlInfo = (String)inv.invokeFunction("getChapter", keyword);			
 			} catch (Exception e) {
+				LOG.log(e.getMessage(), LOG.NormalType);
 				e.printStackTrace();
 			}			
 		}
