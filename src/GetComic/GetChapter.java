@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import javax.swing.JOptionPane;
 
 import Config.LOG;
 import Config.ValidConfig;
@@ -50,6 +51,7 @@ public class GetChapter {
 		{
 			String Rex = "VIEWSTATE\" value=\"(.+?)\"";
 			String keyword = null;
+			String tmpHtmlInfo = null;
 			pattern = Pattern.compile(Rex);
 			matcher = pattern.matcher(HtmlInfo);
 			
@@ -63,11 +65,17 @@ public class GetChapter {
 			try {
 				engine.eval(ValidConfig.JSFile);
 				Invocable inv = (Invocable)engine;
-				HtmlInfo = (String)inv.invokeFunction("getChapter", keyword);			
+				tmpHtmlInfo = (String)inv.invokeFunction("getChapter", keyword);			
 			} catch (Exception e) {
 				LOG.log(e.getMessage(), LOG.NormalType);
 				e.printStackTrace();
-			}			
+			}
+			
+			if(tmpHtmlInfo.length() > 0)
+			{
+				JOptionPane.showMessageDialog(null, "当前漫画为网站标定为版权受限的漫画，请不要下载过多，可能被封IP,详细见下面的说明", "提示", JOptionPane.CLOSED_OPTION);
+				HtmlInfo = tmpHtmlInfo;
+			}
 		}
 		
 		//使用正则表达式进行匹配

@@ -74,7 +74,7 @@ public class PanelControl extends JPanel{
 					"错误说明", JOptionPane.CLOSED_OPTION);
 		}
 		
-		buttonanaly.setText("分析");
+		buttonanaly.setText("获取章节");
 		buttonanaly.setEnabled(true);
 		return;
 	}

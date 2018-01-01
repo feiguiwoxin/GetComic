@@ -16,7 +16,7 @@ public class ButtonAnaly extends JButton{
 	
 	public ButtonAnaly()
 	{
-		this.setText("分析");
+		this.setText("获取章节");
 		this.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -24,7 +24,7 @@ public class ButtonAnaly extends JButton{
 			{
 				if(ButtonAnaly.this.isEnabled())
 				{	
-					ButtonAnaly.this.setText("正在分析...");
+					ButtonAnaly.this.setText("获取章节中....");
 					ButtonAnaly.this.setEnabled(false);
 					ButtonAnaly.this.paintImmediately(0, 0, ButtonAnaly.this.getWidth(), ButtonAnaly.this.getHeight());
 					pc.StartAnaly(ButtonAnaly.this);
