@@ -57,9 +57,8 @@ public class DLControl {
 		{
 			PoolSize = poolsize;
 			fixpool = Executors.newFixedThreadPool(PoolSize);
-			fixpool.shutdownNow();
 		}	
-		else if(fixpool != null && PoolSize != poolsize)
+		else if(fixpool != null)
 		{
 			PoolSize = poolsize;
 			fixpool.shutdownNow();	
@@ -93,8 +92,6 @@ public class DLControl {
 				return false;
 			}
 		}
-		
-		ExecutorService fixpool = Executors.newFixedThreadPool(PoolSize);
 		
 		for(Chapter c : Chapters)
 		{	
