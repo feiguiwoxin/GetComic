@@ -1,5 +1,6 @@
 package UI;
 
+import Config.LOG;
 import Config.ValidConfig;
 import GetComic.Chapter;
 
@@ -7,6 +8,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Set;
@@ -42,7 +45,24 @@ public class FrameComic extends JFrame{
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("Comic.png")));
 		this.setSize(ValidConfig.ComicW, ValidConfig.ComicH);
 		this.setLocation((ValidConfig.WinW - ValidConfig.ComicW) / 2, (ValidConfig.WinH - ValidConfig.ComicH) / 2);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent e)
+			{
+				LOG.log("", LOG.PeriodType);
+				if(CheckAll != null && CheckAll.isEnabled() == false)
+				{
+					int ExitRst = JOptionPane.showConfirmDialog(null, "正在下载中，确认退出？", "确认", JOptionPane.YES_NO_OPTION);
+					if(JOptionPane.NO_OPTION == ExitRst)
+					{
+						return;
+					}
+				}
+				System.exit(0);
+			}		
+		});
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		Container con = this.getContentPane();
 		con.setBackground(new Color(144, 238, 144));
 		con.setLayout(null);
@@ -52,7 +72,7 @@ public class FrameComic extends JFrame{
 		setFileUI(con);
 		setHelpUI(con);
 	}
-	
+
 	private void setHelpUI(Container con)
 	{	
 		JTextArea ta = new JTextArea();
