@@ -20,35 +20,35 @@ public class ButtonDownLoad extends JButton{
 	
 	public ButtonDownLoad()
 	{
-		this.setText("ÏÂÔØ");
+		this.setText("ä¸‹è½½");
 		this.setEnabled(false);
 		this.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mousePressed(MouseEvent e)
 			{
-				if(ButtonDownLoad.this.isEnabled() && ButtonDownLoad.this.getText().equals("ÏÂÔØ"))
+				if(ButtonDownLoad.this.isEnabled() && ButtonDownLoad.this.getText().equals("ä¸‹è½½"))
 				{
-					ButtonDownLoad.this.setText("ÖĞ¶Ï");
+					ButtonDownLoad.this.setText("ä¸­æ–­");
 					DLState = true;
 					ValidConfig.RunThread = true;
 					boolean result = pc.StartDL(ButtonDownLoad.this);
 					if(false == result)
 					{
 						ButtonDownLoad.this.setEnabled(true);
-						ButtonDownLoad.this.setText("ÏÂÔØ");
+						ButtonDownLoad.this.setText("ä¸‹è½½");
 						DLState = false;
 					}					
 				}
-				else if(!ButtonDownLoad.this.isEnabled() && ButtonDownLoad.this.getText().equals("ÏÂÔØ"))
+				else if(!ButtonDownLoad.this.isEnabled() && ButtonDownLoad.this.getText().equals("ä¸‹è½½"))
 				{
-					JOptionPane.showMessageDialog(null, "ÇëÏÈ·ÖÎöÒÔ»ñÈ¡ÕÂ½ÚĞÅÏ¢", "´íÎóËµÃ÷", JOptionPane.CLOSED_OPTION);
+					JOptionPane.showMessageDialog(null, "è¯·å…ˆåˆ†æä»¥è·å–ç« èŠ‚ä¿¡æ¯", "é”™è¯¯è¯´æ˜", JOptionPane.CLOSED_OPTION);
 				}
-				else if(!ButtonDownLoad.this.isEnabled() && ButtonDownLoad.this.getText().equals("ÏÂÔØÖĞ"))
+				else if(!ButtonDownLoad.this.isEnabled() && ButtonDownLoad.this.getText().equals("ä¸‹è½½ä¸­"))
 				{
-					JOptionPane.showMessageDialog(null, "¾ÍËãÄãÔÙÔõÃ´µã£¬Ò²Ã»°ì·¨¼Ó¿ìÏÂÔØËÙ¶ÈÑ½-_-!", "´íÎóËµÃ÷", JOptionPane.CLOSED_OPTION);
+					JOptionPane.showMessageDialog(null, "å°±ç®—ä½ å†æ€ä¹ˆç‚¹ï¼Œä¹Ÿæ²¡åŠæ³•åŠ å¿«ä¸‹è½½é€Ÿåº¦å‘€-_-!", "é”™è¯¯è¯´æ˜", JOptionPane.CLOSED_OPTION);
 				}
-				else if(ButtonDownLoad.this.getText().equals("ÖĞ¶Ï"))
+				else if(ButtonDownLoad.this.getText().equals("ä¸­æ–­"))
 				{			
 					pc.InterrputDL();
 				}	

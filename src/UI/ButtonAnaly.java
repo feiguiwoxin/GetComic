@@ -16,7 +16,7 @@ public class ButtonAnaly extends JButton{
 	
 	public ButtonAnaly()
 	{
-		this.setText("»ñÈ¡ÕÂ½Ú");
+		this.setText("è·å–ç« èŠ‚");
 		this.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -24,7 +24,7 @@ public class ButtonAnaly extends JButton{
 			{
 				if(ButtonAnaly.this.isEnabled())
 				{	
-					ButtonAnaly.this.setText("»ñÈ¡ÕÂ½ÚÖĞ....");
+					ButtonAnaly.this.setText("è·å–ç« èŠ‚ä¸­....");
 					ButtonAnaly.this.setEnabled(false);
 					ButtonAnaly.this.paintImmediately(0, 0, ButtonAnaly.this.getWidth(), ButtonAnaly.this.getHeight());
 					pc.StartAnaly(ButtonAnaly.this);

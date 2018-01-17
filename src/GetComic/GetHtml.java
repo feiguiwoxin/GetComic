@@ -7,7 +7,7 @@ import java.net.URLConnection;
 
 import Config.LOG;
 
-//¹¤¾ßº¯Êı£¬ÓÃÓÚ»ñÈ¡ÍøÒ³µÄÔ´´úÂë£¬×¢Òâ£¬Ö»ÄÜ»ñÈ¡µ½¶¯Ì¬JSÖ´ĞĞÖ®Ç°µÄÍøÒ³Ô´´úÂë
+//å·¥å…·å‡½æ•°ï¼Œç”¨äºè·å–ç½‘é¡µçš„æºä»£ç ï¼Œæ³¨æ„ï¼Œåªèƒ½è·å–åˆ°åŠ¨æ€JSæ‰§è¡Œä¹‹å‰çš„ç½‘é¡µæºä»£ç 
 public class GetHtml {
 	
 	public static String GetInfo(String UrlAdd)
@@ -22,7 +22,7 @@ public class GetHtml {
 			URLConnection urlcon = url.openConnection();
 			urlcon.setRequestProperty("accept", "*/*");
 			urlcon.setRequestProperty("connection", "Keep-Alive");
-			urlcon.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; ¡­) Gecko/20100101 Firefox/57.0");
+			urlcon.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; â€¦) Gecko/20100101 Firefox/57.0");
 			urlcon.setConnectTimeout(3 * 1000);
 			urlcon.setReadTimeout(3 * 1000);
 			urlcon.connect();
@@ -33,7 +33,7 @@ public class GetHtml {
 			}
 			urlRead.close();
 		} catch (Exception e) {
-			LOG.log("»ñÈ¡ÍøÖ·ĞÅÏ¢´íÎó:" + UrlAdd + " e:" + e.getMessage(), LOG.NormalType);
+			LOG.log("è·å–ç½‘å€ä¿¡æ¯é”™è¯¯:" + UrlAdd + " e:" + e.getMessage(), LOG.NormalType);
 			e.printStackTrace();
 			return null;
 		}

@@ -48,17 +48,17 @@ public class PanelControl extends JPanel{
 
 	public void StartAnaly(ButtonAnaly buttonanaly)
 	{
-		//°²È«ĞÔ¿¼ÂÇ£¬ÕâÑù²»ÊÇÓÉÕâ¸öPanelControl±¾Éí´´½¨µÄButtonAnaly¶ÔÏóÎŞ·¨µ÷ÓÃ´Ë·½·¨¡£
+		//å®‰å…¨æ€§è€ƒè™‘ï¼Œè¿™æ ·ä¸æ˜¯ç”±è¿™ä¸ªPanelControlæœ¬èº«åˆ›å»ºçš„ButtonAnalyå¯¹è±¡æ— æ³•è°ƒç”¨æ­¤æ–¹æ³•ã€‚
 		if(buttonanaly != this.buttonanaly) return;
 		if(ComicId.getText().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "ÇëÊäÈëÂş»­ID", "´íÎóËµÃ÷", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null, "è¯·è¾“å…¥æ¼«ç”»ID", "é”™è¯¯è¯´æ˜", JOptionPane.CLOSED_OPTION);
 			return;
 		}
 		
 		if(buttonDl.getDLState())
 		{
-			JOptionPane.showMessageDialog(null, "ÕıÔÚÏÂÔØÖĞ£¬ÔİÊ±ÎŞ·¨²Ù×÷", "´íÎóËµÃ÷", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null, "æ­£åœ¨ä¸‹è½½ä¸­ï¼Œæš‚æ—¶æ— æ³•æ“ä½œ", "é”™è¯¯è¯´æ˜", JOptionPane.CLOSED_OPTION);
 			return;
 		}
 		
@@ -70,11 +70,11 @@ public class PanelControl extends JPanel{
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, "¿ÉÄÜµÄ´íÎóËµÃ÷:\n1.Âş»­ID´íÎó»òÍøÕ¾ÒÑ½ûÖ¹¸ÃÂş»­£¬Çë¼ì²é¡£\n2.ÓĞ¿ÉÄÜÊÇÒòÎªÄãÏÂÔØ¹ı¶àµ¼ÖÂ±»½ûÖ¹IPÁËÓ´(ÓÈÆäÊÇÍøÕ¾ÉÏµÄ°æÈ¨ÊÜÏŞÂş»­£¬ÏÂÔØ¹ı¶àÌØ±ğÈİÒ×±»²ì¾õ¶ø½ûÖ¹)£¬\n¿ÉÒÔ³¢ÊÔping www.manhuagui.comÀ´È·ÈÏ¡£Èç¹ûping²»Í¨¶øÍ¨¹ıÊÖ»úÎŞÏßÍøÂçÈ´¿ÉÒÔ·ÃÎÊ¾Í»ù±¾È·ÊµÊÇ±»·âIPÁË¡£\n(¿ÉÒÔÖØĞÂ²¦ºÅ»òÖØÆô¹âÇ¥ºĞ×ÓÀ´»»IP)", 
-					"´íÎóËµÃ÷", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null, "å¯èƒ½çš„é”™è¯¯è¯´æ˜:\n1.æ¼«ç”»IDé”™è¯¯æˆ–ç½‘ç«™å·²ç¦æ­¢è¯¥æ¼«ç”»ï¼Œè¯·æ£€æŸ¥ã€‚\n2.æœ‰å¯èƒ½æ˜¯å› ä¸ºä½ ä¸‹è½½è¿‡å¤šå¯¼è‡´è¢«ç¦æ­¢IPäº†å“Ÿ(å°¤å…¶æ˜¯ç½‘ç«™ä¸Šçš„ç‰ˆæƒå—é™æ¼«ç”»ï¼Œä¸‹è½½è¿‡å¤šç‰¹åˆ«å®¹æ˜“è¢«å¯Ÿè§‰è€Œç¦æ­¢)ï¼Œ\nå¯ä»¥å°è¯•ping www.manhuagui.comæ¥ç¡®è®¤ã€‚å¦‚æœpingä¸é€šè€Œé€šè¿‡æ‰‹æœºæ— çº¿ç½‘ç»œå´å¯ä»¥è®¿é—®å°±åŸºæœ¬ç¡®å®æ˜¯è¢«å°IPäº†ã€‚\n(å¯ä»¥é‡æ–°æ‹¨å·æˆ–é‡å¯å…‰é’ç›’å­æ¥æ¢IP)", 
+					"é”™è¯¯è¯´æ˜", JOptionPane.CLOSED_OPTION);
 		}
 		
-		buttonanaly.setText("»ñÈ¡ÕÂ½Ú");
+		buttonanaly.setText("è·å–ç« èŠ‚");
 		buttonanaly.setEnabled(true);
 		return;
 	}
@@ -99,7 +99,7 @@ public class PanelControl extends JPanel{
 	public void ResetCompnent()
 	{
 		buttonDl.setEnabled(true);
-		buttonDl.setText("ÏÂÔØ");
+		buttonDl.setText("ä¸‹è½½");
 		buttonDl.resetDLStat();
 		buttonanaly.setEnabled(true);
 		select.setEnabled(true);

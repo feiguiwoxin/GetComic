@@ -16,7 +16,7 @@ public class CheckBoxAll extends JCheckBox{
 		{
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if(CheckBoxAll.this.getText().equals("ȫѡ"))
+				if(CheckBoxAll.this.getText().equals("全选"))
 				{
 					if(ItemEvent.SELECTED == e.getStateChange())
 					{

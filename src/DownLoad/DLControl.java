@@ -11,7 +11,7 @@ import Config.ValidConfig;
 import GetComic.Chapter;
 import GetComic.GetChapter;
 import UI.FrameComic;
-//Õâ¸öÀàÎªÏÂÔØ¿ØÖÆÖĞĞÄ£¬Ö÷ÒªÓÃÓÚÓëÃæ°åµÄÍ¨ĞÅºÍÏÂÔØÏß³ÌµÄ¿ØÖÆ
+//è¿™ä¸ªç±»ä¸ºä¸‹è½½æ§åˆ¶ä¸­å¿ƒï¼Œä¸»è¦ç”¨äºä¸é¢æ¿çš„é€šä¿¡å’Œä¸‹è½½çº¿ç¨‹çš„æ§åˆ¶
 public class DLControl {
 	private String ComicNum = null;
 	private int PoolSize = 0;
@@ -19,7 +19,7 @@ public class DLControl {
 	private FrameComic fc = null;
 	private ExecutorService fixpool = null;
 	private String BookName = null;
-	//»ñÈ¡ÍøÒ³µÄÕÂ½Ú
+	//è·å–ç½‘é¡µçš„ç« èŠ‚
 	public boolean AnalyChapter()
 	{
 		if(null == ComicNum) return false;
@@ -67,7 +67,7 @@ public class DLControl {
 		
 		if(Chapters.isEmpty())
 		{
-			JOptionPane.showMessageDialog(null, "Ã»ÓĞÈÎºÎÑ¡ÔñÕÂ½Ú", "´íÎóËµÃ÷", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null, "æ²¡æœ‰ä»»ä½•é€‰æ‹©ç« èŠ‚", "é”™è¯¯è¯´æ˜", JOptionPane.CLOSED_OPTION);
 			return false;
 		}
 		
@@ -88,7 +88,7 @@ public class DLControl {
 		{
 			if(!HeadDir.mkdirs())
 			{
-				JOptionPane.showMessageDialog(null, "´´½¨³õÊ¼ÎÄ¼ş¼ĞÊ§°Ü£¬Çë¼ì²é´ÅÅÌÊÇ·ñÒÑÂú/µØÖ·´íÎó:"+ HeadDir.getAbsolutePath(), "´íÎóËµÃ÷", JOptionPane.CLOSED_OPTION);
+				JOptionPane.showMessageDialog(null, "åˆ›å»ºåˆå§‹æ–‡ä»¶å¤¹å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç£ç›˜æ˜¯å¦å·²æ»¡/åœ°å€é”™è¯¯:"+ HeadDir.getAbsolutePath(), "é”™è¯¯è¯´æ˜", JOptionPane.CLOSED_OPTION);
 				return false;
 			}
 		}

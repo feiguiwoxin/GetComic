@@ -10,7 +10,7 @@ import java.net.URL;
 
 import Config.LOG;
 
-//¸ÃÀà´«ÈëÒ»¸öÍ¼Æ¬µÄµØÖ·£¬ÓÃÓÚ±£´æ¸ÃÍ¼Æ¬
+//è¯¥ç±»ä¼ å…¥ä¸€ä¸ªå›¾ç‰‡çš„åœ°å€ï¼Œç”¨äºä¿å­˜è¯¥å›¾ç‰‡
 public class SaveImg {
 	private String UrlAdd = null;
 	private String Path = null;
@@ -22,11 +22,11 @@ public class SaveImg {
 		this.Path = Path;
 		this.FileName = FileName;
 	}
-	//½«Í¼Æ¬µÄ¶ş½øÖÆÁ÷Ğ´ÈëÎÄ¼ş£¬·µ»ØÊÇ·ñ±£´æ³É¹¦
+	//å°†å›¾ç‰‡çš„äºŒè¿›åˆ¶æµå†™å…¥æ–‡ä»¶ï¼Œè¿”å›æ˜¯å¦ä¿å­˜æˆåŠŸ
 	public int SavePicture()
 	{
 		if(null == Path || null == FileName) return 0;
-		//ÌáÇ°ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ£¬Èç¹û´æÔÚÖ±½ÓÌø¹ıÏÂÔØ£¬¼Ó¿ìĞø´«ËÙ¶È
+		//æå‰åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œå¦‚æœå­˜åœ¨ç›´æ¥è·³è¿‡ä¸‹è½½ï¼ŒåŠ å¿«ç»­ä¼ é€Ÿåº¦
 		File file = new File(Path + FileName);
 		if(file.exists())
 		{
@@ -61,11 +61,11 @@ public class SaveImg {
 		
 		return 1;
 	}
-	//»ñÈ¡Í¼Æ¬µÄ¶ş½øÖÆÁ÷
+	//è·å–å›¾ç‰‡çš„äºŒè¿›åˆ¶æµ
 	private byte[] getImgData()
 	{
 		byte[] ImgData = null;
-		//Èç¹ûÁ¬½ÓÊ§°Ü£¬ÓĞ3´ÎÖØÁ¬»ú»á
+		//å¦‚æœè¿æ¥å¤±è´¥ï¼Œæœ‰3æ¬¡é‡è¿æœºä¼š
 		int ConnectTime = 3;
 		if(null == UrlAdd) return null;
 		
@@ -76,7 +76,7 @@ public class SaveImg {
 				HttpURLConnection urlcon = (HttpURLConnection)url.openConnection();
 				urlcon.setRequestProperty("Referer", "http://www.manhuagui.com/");
 				urlcon.setRequestMethod("GET");
-				urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; ¡­) Gecko/20100101 Firefox/57.0");
+				urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; â€¦) Gecko/20100101 Firefox/57.0");
 				urlcon.setConnectTimeout(5 * 1000);
 				urlcon.setReadTimeout(8 * 1000);
 				
@@ -92,7 +92,7 @@ public class SaveImg {
 		
 		return null;
 	}
-	//½«Í¼Æ¬µÄHttpÁ÷×ª»¯Îª¶ş½øÖÆÁ÷
+	//å°†å›¾ç‰‡çš„Httpæµè½¬åŒ–ä¸ºäºŒè¿›åˆ¶æµ
 	private byte[] GetbyteFromStream(InputStream in) throws IOException
 	{
 		int len;

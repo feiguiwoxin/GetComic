@@ -18,10 +18,10 @@ public class GetPicture {
 	{
 		GetJsInfo(GetHtml.GetInfo(UrlAdd));
 	}
-	/*´ÓÍøÒ³ÄÚÈİÖĞ»ñÈ¡ÎÒÃÇĞèÒªÓÃÓÚ½âÂëµÄJS£¬ÕâÀïÂş»­¹ñÊ¹ÓÃÁË2²ãÑ¹Ëõ£º
-	 * 1.evalº¯Êı±¾ÉíÖ´ĞĞµÄ¾ÍÊÇÒ»¸öparkerÑ¹Ëõ;
-	 * 2.¶ÔÓÚparkerÑ¹ËõµÄµÚËÄ¸öÈë²ÎÒ²¾ÍÊÇk,ĞèÒªÏÈ½øĞĞbase64½âÑ¹Ëõ;
-	 * Õâ¸öº¯ÊıµÄÄ¿µÄ¾ÍÊÇÎªÁË»ñÈ¡½âÂëĞèÒªµÄÏà¹Ø²ÎÊı*/
+	/*ä»ç½‘é¡µå†…å®¹ä¸­è·å–æˆ‘ä»¬éœ€è¦ç”¨äºè§£ç çš„JSï¼Œè¿™é‡Œæ¼«ç”»æŸœä½¿ç”¨äº†2å±‚å‹ç¼©ï¼š
+	 * 1.evalå‡½æ•°æœ¬èº«æ‰§è¡Œçš„å°±æ˜¯ä¸€ä¸ªparkerå‹ç¼©;
+	 * 2.å¯¹äºparkerå‹ç¼©çš„ç¬¬å››ä¸ªå…¥å‚ä¹Ÿå°±æ˜¯k,éœ€è¦å…ˆè¿›è¡Œbase64è§£å‹ç¼©;
+	 * è¿™ä¸ªå‡½æ•°çš„ç›®çš„å°±æ˜¯ä¸ºäº†è·å–è§£ç éœ€è¦çš„ç›¸å…³å‚æ•°*/
 	private void GetJsInfo(String HtmlInfo)
 	{
 		if(null == HtmlInfo) return;
@@ -50,7 +50,7 @@ public class GetPicture {
 		
 		return;
 	}
-	//´Ë´¦Ö±½Óµ÷ÓÃĞŞ¸Ä×ÔÔ´HTMLµÄ½Å±¾À´½øĞĞ½âÂë,ÁíÍâ£¬´Ë´¦²ÉÓÃeval(String)¶ø²»ÓÃeval(FileReader)ÊÇÒòÎª´ò°ü³ÉJARºóÎŞ·¨Ê¹ÓÃºóÕß
+	//æ­¤å¤„ç›´æ¥è°ƒç”¨ä¿®æ”¹è‡ªæºHTMLçš„è„šæœ¬æ¥è¿›è¡Œè§£ç ,å¦å¤–ï¼Œæ­¤å¤„é‡‡ç”¨eval(String)è€Œä¸ç”¨eval(FileReader)æ˜¯å› ä¸ºæ‰“åŒ…æˆJARåæ— æ³•ä½¿ç”¨åè€…
 	private void paraseInfo(String para1, int para2, int para3, String para4, int para5)
 	{
 		ScriptEngineManager engineManager = new ScriptEngineManager();
@@ -65,7 +65,7 @@ public class GetPicture {
 			e.printStackTrace();
 		}	
 	}
-	//¸ù¾İ½âÂë½á¹û»ñÈ¡µ½Í¼Æ¬µÄURLµØÖ·
+	//æ ¹æ®è§£ç ç»“æœè·å–åˆ°å›¾ç‰‡çš„URLåœ°å€
 	private void getPath(String ParkerInfo)
 	{
 		String path = null;

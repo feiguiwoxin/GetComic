@@ -56,7 +56,7 @@ public class LOG {
 			logbuff = "";
 			fw.close();
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "写入日志错误，请关闭日志文件", "错误", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null, "鍐欏叆鏃ュ織閿欒锛岃鍏抽棴鏃ュ織鏂囦欢", "閿欒", JOptionPane.CLOSED_OPTION);
 			return;
 		}
 	}

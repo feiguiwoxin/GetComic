@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 import Config.LOG;
 import Config.ValidConfig;
-//�������ڻ�ȡ�������½����͸��½ڵ�URL
+//该类用于获取漫画的章节名和各章节的URL
 public class GetChapter {
 	private ArrayList<Chapter> Chapter = new ArrayList<Chapter>();
 	private String UrlAdd = null;
@@ -25,11 +25,11 @@ public class GetChapter {
 		this.ComicNum = ComicNum;
 		this.UrlAdd = "http://www.manhuagui.com/comic/" + ComicNum + "/" + "?" + (new Date()).getTime();
 		AnalyHtml(GetHtml.GetInfo(this.UrlAdd));
-		//TODO ������Ż�����������ͨ���������ֽ��������Ż�����Ҫ���Ǿ����عؼ���
+		//TODO 排序待优化，后续考虑通过标题数字进行排序优化，需要考虑卷，回关键字
 		Collections.reverse(Chapter);
 	}	
 		
-	//������ҳ���ݣ���ȡ�½ڱ����URL�Լ�����
+	//分析网页内容，提取章节标题和URL以及书名
 	private void AnalyHtml(String HtmlInfo)
 	{
 		String Title = null;
@@ -46,7 +46,7 @@ public class GetChapter {
 			BookName = matcher.group(1);
 		}
 		
-		//��������һ������վ�϶����½���ϢҲ������base64ѹ������Ҫ�Ƚ��н�ѹ��
+		//漫画柜在一部分网站上对于章节信息也采用了base64压缩，需要先进行解压缩
 		if(HtmlInfo.indexOf("__VIEWSTATE") != -1)
 		{
 			String Rex = "VIEWSTATE\" value=\"(.+?)\"";
@@ -73,12 +73,12 @@ public class GetChapter {
 			
 			if(tmpHtmlInfo.length() > 0)
 			{
-				JOptionPane.showMessageDialog(null, "��ǰ����Ϊ��վ�궨Ϊ��Ȩ���޵��������벻Ҫ���ع��࣬���ܱ���IP,��ϸ�������˵��", "��ʾ", JOptionPane.CLOSED_OPTION);
+				JOptionPane.showMessageDialog(null, "当前漫画为网站标定为版权受限的漫画，请不要下载过多，可能被封IP,详细见下面的说明", "提示", JOptionPane.CLOSED_OPTION);
 				HtmlInfo = tmpHtmlInfo;
 			}
 		}
 		
-		//ʹ���������ʽ����ƥ��
+		//使用正则表达式进行匹配
 		String Rex = "<li><a href=\"/comic/" + ComicNum + "/(.+?)\" title=\"(.+?)\"";
 		pattern = Pattern.compile(Rex);
 		matcher = pattern.matcher(HtmlInfo);

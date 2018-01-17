@@ -39,9 +39,9 @@ public class FrameComic extends JFrame{
 	
 	private void initLayout()
 	{
-		this.setTitle("Ò»¼ü»ñÈ¡Âş»­¹¤¾ß");
+		this.setTitle("ä¸€é”®è·å–æ¼«ç”»å·¥å…·");
 		this.setResizable(false);
-		//²ÉÈ¡Èç´ËÆæ¹ÖµÄ¶ÁÈ¡·½Ê½ÊÇÎªÁËÔÚJARÖĞÄÜ¶ÁÈ¡µ½img
+		//é‡‡å–å¦‚æ­¤å¥‡æ€ªçš„è¯»å–æ–¹å¼æ˜¯ä¸ºäº†åœ¨JARä¸­èƒ½è¯»å–åˆ°img
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("Comic.png")));
 		this.setSize(ValidConfig.ComicW, ValidConfig.ComicH);
 		this.setLocation((ValidConfig.WinW - ValidConfig.ComicW) / 2, (ValidConfig.WinH - ValidConfig.ComicH) / 2);
@@ -53,7 +53,7 @@ public class FrameComic extends JFrame{
 				LOG.log("", LOG.PeriodType);
 				if(CheckAll != null && CheckAll.isEnabled() == false)
 				{
-					int ExitRst = JOptionPane.showConfirmDialog(null, "ÕıÔÚÏÂÔØÖĞ£¬È·ÈÏÍË³ö£¿", "È·ÈÏ", JOptionPane.YES_NO_OPTION);
+					int ExitRst = JOptionPane.showConfirmDialog(null, "æ­£åœ¨ä¸‹è½½ä¸­ï¼Œç¡®è®¤é€€å‡ºï¼Ÿ", "ç¡®è®¤", JOptionPane.YES_NO_OPTION);
 					if(JOptionPane.NO_OPTION == ExitRst)
 					{
 						return;
@@ -78,18 +78,18 @@ public class FrameComic extends JFrame{
 		JTextArea ta = new JTextArea();
 		ta.setEditable(false);
 		ta.setLineWrap(true);
-		ta.setFont(new Font("ËÎÌå", Font.PLAIN, 15));
+		ta.setFont(new Font("å®‹ä½“", Font.PLAIN, 15));
 		ta.setDisabledTextColor(Color.BLACK);
-		ta.setText("±¾Èí¼şÖ»ÄÜ×¥È¡µ½http://www.manhuagui.com/¸ÃÍøÕ¾µÄÂş»­Êı¾İ(´ËÎÄ±¾¿òÄÚ¿ÉÒÔÓÃCTRL+C½øĞĞ¸´ÖÆ)¡£\n" + 
-				"1.Âş»­IDÊÇÊ²Ã´£¿\n" + 
-				"½øÈëhttp://www.manhuagui.com/ÍøÕ¾ºó£¬ËÑË÷µ½ÄãÏëÒªµÄÂş»­£¬µã»÷½øÈëÂş»­Ò³Ãæ¡£±ÈÈçhttp://www.manhuagui.com/comic/1626/Õâ¸öÂş»­£¬ÔòÂş»­ID¾ÍÊÇ1626¡£\n"
-				+ "ÁíÍâ¼´Ê¹ÊÇÍøÒ³ÏÔÊ¾Òò°æÈ¨¶ø±»ÆÁ±ÎµÄÂş»­Ò²¿ÉÒÔÊÔÒ»ÏÂÅ¶£¬µ«ÇĞ¼Ç²»ÒªÒ»ÌìÖ®ÄÚÏÂÔØ¹ı¶à´ËÀà±»½ûÂş»­£¬ºÜÈİÒ×±»ÍøÕ¾ºóÌ¨·¢ÏÖ¶ø·âIP¡£\n" + 
-				"2.ÏÂÔØÊ§°Üºó£¬ÈçºÎÅĞ¶ÏÊÇ²»ÊÇ±»·âIPÁË£¿ÈçºÎ½â¾ö£¿\n" + 
-				"¿ÉÒÔ³¢ÊÔÔÚä¯ÀÀÆ÷ÉÏ´ò¿ªhttp://www.manhuagui.com/£¬Èç¹û·¢ÏÖÎŞ·¨½øÈë£¬Ôò¿ÉÒÔÊ¹ÓÃÄãµÄÊÖ»ú£¨×¢ÒâÇë²»ÒªÊ¹ÓÃºÍµçÄÔÒ»ÑùµÄwifiÍøÂç£¬Ê¹ÓÃÄãµÄÎŞÏßÍøÂç»òÆäËûÍøÂç£©³¢ÊÔµÇÂ¼¸ÃÍøÕ¾£¬Èç¹ûÊÖ»ú¿ÉÒÔ½øÈë¶øµçÄÔ²»ĞĞ£¬ÔòËµÃ÷È·Êµ±»·âIPÁË¡£\n" + 
-				"·âIP²»Òª½ôÕÅ£¬Èç¹ûÄãÊÇ²¦ºÅÉÏÍøµÄÓÃ»§£¬ÄÇÃ´ÖØĞÂ²¦ºÅ¾Í¿ÉÒÔ»ñÈ¡µ½ĞÂIP¡£Èç¹ûÄãÊÇ¹âÏËÓÃ»§£¬ÔòĞèÒª¶ÏµçÖØÆôÒ»ÏÂ¹âÇ¥ºĞ×Ó¡£\n" + 
-				"3.ÆäËûËµÃ÷\n" + 
-				"1£©Èç¹û³öÏÖÏÂÔØ²»¶¯µÄÇé¿ö£¨½ø¶ÈÒ»Ö±Ã»¶¯£©£¬¿ÉÒÔÖĞ¶ÏÒ»ÏÂÈ»ºó¼ÌĞøµãÏÂÔØ£¬Õâ²¢²»»áÖØĞÂÏÂÔØÒÑÏÂÔØÎÄ¼ş£¬¶øÊÇ»áÖØĞÂ½¨Á¢Á¬½ÓÏÂÔØ£¨¾ÍÏñÓÃÑ¸À×µÈÈí¼şÏÂÔØÃ»ËÙ¶ÈÖØÁ¬Ò»ÏÂ¿ÉÄÜ»áºÃÒ»ÑùµÄµÀÀí£©£¬¿ÉÄÜ»á¼Ó¿ìÏÂÔØËÙ¶È\n" + 
-				"2£©Èç¹ûÖĞ¶Ïºó·¢ÏÖÑ¡ÔñÕÂ½Ú½çÃæÊÇ»ÒÉ«µÄ£¬ÕâÊ±ºò¿ÉÒÔÖ±½Ó¹Ø±Õ³ÌĞò£¬È»ºóÖØĞÂ´ò¿ªÖØĞÂ·ÖÎöÏÂÔØ£¬Ö»ÒªÄã²»¸Ä¶¯±£´æÎ»ÖÃÒ²²»É¾³ıÒÑÏÂÔØÎÄ¼ş£¬ÄÇÃ´¶ÔÓÚÒÑÏÂÔØÄÚÈİÍ¬Ñù»áÖ±½ÓÌø¹ı£¬²»»áÖØĞÂÏÂÔØ¡£");
+		ta.setText("æœ¬è½¯ä»¶åªèƒ½æŠ“å–åˆ°http://www.manhuagui.com/è¯¥ç½‘ç«™çš„æ¼«ç”»æ•°æ®(æ­¤æ–‡æœ¬æ¡†å†…å¯ä»¥ç”¨CTRL+Cè¿›è¡Œå¤åˆ¶)ã€‚\n" + 
+				"1.æ¼«ç”»IDæ˜¯ä»€ä¹ˆï¼Ÿ\n" + 
+				"è¿›å…¥http://www.manhuagui.com/ç½‘ç«™åï¼Œæœç´¢åˆ°ä½ æƒ³è¦çš„æ¼«ç”»ï¼Œç‚¹å‡»è¿›å…¥æ¼«ç”»é¡µé¢ã€‚æ¯”å¦‚http://www.manhuagui.com/comic/1626/è¿™ä¸ªæ¼«ç”»ï¼Œåˆ™æ¼«ç”»IDå°±æ˜¯1626ã€‚\n"
+				+ "å¦å¤–å³ä½¿æ˜¯ç½‘é¡µæ˜¾ç¤ºå› ç‰ˆæƒè€Œè¢«å±è”½çš„æ¼«ç”»ä¹Ÿå¯ä»¥è¯•ä¸€ä¸‹å“¦ï¼Œä½†åˆ‡è®°ä¸è¦ä¸€å¤©ä¹‹å†…ä¸‹è½½è¿‡å¤šæ­¤ç±»è¢«ç¦æ¼«ç”»ï¼Œå¾ˆå®¹æ˜“è¢«ç½‘ç«™åå°å‘ç°è€Œå°IPã€‚\n" + 
+				"2.ä¸‹è½½å¤±è´¥åï¼Œå¦‚ä½•åˆ¤æ–­æ˜¯ä¸æ˜¯è¢«å°IPäº†ï¼Ÿå¦‚ä½•è§£å†³ï¼Ÿ\n" + 
+				"å¯ä»¥å°è¯•åœ¨æµè§ˆå™¨ä¸Šæ‰“å¼€http://www.manhuagui.com/ï¼Œå¦‚æœå‘ç°æ— æ³•è¿›å…¥ï¼Œåˆ™å¯ä»¥ä½¿ç”¨ä½ çš„æ‰‹æœºï¼ˆæ³¨æ„è¯·ä¸è¦ä½¿ç”¨å’Œç”µè„‘ä¸€æ ·çš„wifiç½‘ç»œï¼Œä½¿ç”¨ä½ çš„æ— çº¿ç½‘ç»œæˆ–å…¶ä»–ç½‘ç»œï¼‰å°è¯•ç™»å½•è¯¥ç½‘ç«™ï¼Œå¦‚æœæ‰‹æœºå¯ä»¥è¿›å…¥è€Œç”µè„‘ä¸è¡Œï¼Œåˆ™è¯´æ˜ç¡®å®è¢«å°IPäº†ã€‚\n" + 
+				"å°IPä¸è¦ç´§å¼ ï¼Œå¦‚æœä½ æ˜¯æ‹¨å·ä¸Šç½‘çš„ç”¨æˆ·ï¼Œé‚£ä¹ˆé‡æ–°æ‹¨å·å°±å¯ä»¥è·å–åˆ°æ–°IPã€‚å¦‚æœä½ æ˜¯å…‰çº¤ç”¨æˆ·ï¼Œåˆ™éœ€è¦æ–­ç”µé‡å¯ä¸€ä¸‹å…‰é’ç›’å­ã€‚\n" + 
+				"3.å…¶ä»–è¯´æ˜\n" + 
+				"1ï¼‰å¦‚æœå‡ºç°ä¸‹è½½ä¸åŠ¨çš„æƒ…å†µï¼ˆè¿›åº¦ä¸€ç›´æ²¡åŠ¨ï¼‰ï¼Œå¯ä»¥ä¸­æ–­ä¸€ä¸‹ç„¶åç»§ç»­ç‚¹ä¸‹è½½ï¼Œè¿™å¹¶ä¸ä¼šé‡æ–°ä¸‹è½½å·²ä¸‹è½½æ–‡ä»¶ï¼Œè€Œæ˜¯ä¼šé‡æ–°å»ºç«‹è¿æ¥ä¸‹è½½ï¼ˆå°±åƒç”¨è¿…é›·ç­‰è½¯ä»¶ä¸‹è½½æ²¡é€Ÿåº¦é‡è¿ä¸€ä¸‹å¯èƒ½ä¼šå¥½ä¸€æ ·çš„é“ç†ï¼‰ï¼Œå¯èƒ½ä¼šåŠ å¿«ä¸‹è½½é€Ÿåº¦\n" + 
+				"2ï¼‰å¦‚æœä¸­æ–­åå‘ç°é€‰æ‹©ç« èŠ‚ç•Œé¢æ˜¯ç°è‰²çš„ï¼Œè¿™æ—¶å€™å¯ä»¥ç›´æ¥å…³é—­ç¨‹åºï¼Œç„¶åé‡æ–°æ‰“å¼€é‡æ–°åˆ†æä¸‹è½½ï¼Œåªè¦ä½ ä¸æ”¹åŠ¨ä¿å­˜ä½ç½®ä¹Ÿä¸åˆ é™¤å·²ä¸‹è½½æ–‡ä»¶ï¼Œé‚£ä¹ˆå¯¹äºå·²ä¸‹è½½å†…å®¹åŒæ ·ä¼šç›´æ¥è·³è¿‡ï¼Œä¸ä¼šé‡æ–°ä¸‹è½½ã€‚");
 		
 		JScrollPane sp = new JScrollPane(ta);
 		sp.setBounds(5, 450, 430, 115);
@@ -125,7 +125,7 @@ public class FrameComic extends JFrame{
 		JpScroll.removeAll();
 		scrollpane.getVerticalScrollBar().setValue(0);
 		Boxs.clear();
-		CheckAll = new CheckBoxAll("È«Ñ¡", this);
+		CheckAll = new CheckBoxAll("å…¨é€‰", this);
 		JpScroll.add(CheckAll);
 		for(Chapter chapter : Chapters)
 		{
@@ -196,13 +196,13 @@ public class FrameComic extends JFrame{
 	{
 		JCheckBox box = Boxs.get(chapter);
 		String currtext = box.getText();
-		int index = currtext.indexOf("ÈÎÎñ½øÕ¹:");
+		int index = currtext.indexOf("ä»»åŠ¡è¿›å±•:");
 		if(-1 != index)
 		{
 			currtext = currtext.substring(0, index - 1);
 		}
 
-		box.setText(currtext + " ÈÎÎñ½øÕ¹:" + curr + "/" + all);
+		box.setText(currtext + " ä»»åŠ¡è¿›å±•:" + curr + "/" + all);
 		box.updateUI();
 	}
 	
@@ -211,7 +211,7 @@ public class FrameComic extends JFrame{
 		TaskNum --;
 		JCheckBox box = Boxs.get(chapter);
 		String currtext = box.getText();
-		int index = currtext.indexOf("ÈÎÎñ½øÕ¹:");
+		int index = currtext.indexOf("ä»»åŠ¡è¿›å±•:");
 		if(-1 != index)
 		{
 			currtext = currtext.substring(0, index - 1);
@@ -219,12 +219,12 @@ public class FrameComic extends JFrame{
 		
 		if(type == 1)
 		{
-			box.setText(currtext + " ÏÂÔØÍê³Éà¶~");
+			box.setText(currtext + " ä¸‹è½½å®Œæˆå–½~");
 			box.setForeground(Color.RED);
 		}
 		else if(type == 0)
 		{
-			box.setText(currtext + " ÈÎÎñ½øÕ¹:ÈÎÎñÊ§°Ü,¿ÉÒÔ³¢ÊÔÔÙ´ÎÏÂÔØ£¬²»»áÓ°ÏìÒÑÏÂÍ¼Æ¬" );
+			box.setText(currtext + " ä»»åŠ¡è¿›å±•:ä»»åŠ¡å¤±è´¥,å¯ä»¥å°è¯•å†æ¬¡ä¸‹è½½ï¼Œä¸ä¼šå½±å“å·²ä¸‹å›¾ç‰‡" );
 		}
 		
 		box.updateUI();
@@ -233,7 +233,7 @@ public class FrameComic extends JFrame{
 			pc.ResetCompnent();
 			ActiveAllbox();
 			Toolkit.getDefaultToolkit().beep();
-			JOptionPane.showMessageDialog(null, "ÏÂÔØÍê³É^_^", "ËµÃ÷", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null, "ä¸‹è½½å®Œæˆ^_^", "è¯´æ˜", JOptionPane.CLOSED_OPTION);
 		}
 	}
 	

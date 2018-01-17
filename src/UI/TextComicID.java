@@ -13,14 +13,14 @@ public class TextComicID extends JTextField{
 	
 	public TextComicID()
 	{
-		this.setText("ÇëÊäÈëÂþ»­ID");
+		this.setText("è¯·è¾“å…¥æ¼«ç”»ID");
 		this.setForeground(Color.BLUE);
 		this.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mousePressed(MouseEvent e)
 			{
-				if(TextComicID.this.getText().equals("ÇëÊäÈëÂþ»­ID"))
+				if(TextComicID.this.getText().equals("è¯·è¾“å…¥æ¼«ç”»ID"))
 				{
 					TextComicID.this.setText("");
 					TextComicID.this.setForeground(Color.BLACK);
@@ -33,7 +33,7 @@ public class TextComicID extends JTextField{
 			@Override
 			public void keyTyped(KeyEvent e)
 			{
-				if(TextComicID.this.getText().equals("ÇëÊäÈëÂþ»­ID"))
+				if(TextComicID.this.getText().equals("è¯·è¾“å…¥æ¼«ç”»ID"))
 				{
 					TextComicID.this.setText("");
 					TextComicID.this.setForeground(Color.BLACK);

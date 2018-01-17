@@ -46,7 +46,7 @@ public class DLThread implements Runnable{
 		{
 			if(!dir.mkdir())
 			{
-				LOG.log("´´½¨ÕÂ½ÚÎÄ¼ş¼ĞÊ§°Ü£¬Çë¼ì²é´ÅÅÌÊÇ·ñÒÑÂú/µØÖ·´íÎó:" + dir.getAbsolutePath(), LOG.NormalType);
+				LOG.log("åˆ›å»ºç« èŠ‚æ–‡ä»¶å¤¹å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç£ç›˜æ˜¯å¦å·²æ»¡/åœ°å€é”™è¯¯:" + dir.getAbsolutePath(), LOG.NormalType);
 				return;
 			}
 		}			
@@ -55,7 +55,7 @@ public class DLThread implements Runnable{
 		
 		if(PicPath.isEmpty())
 		{
-			LOG.log("½âÎöÍ¼Æ¬µØÖ·Ê§°Ü:" + html, LOG.NormalType);
+			LOG.log("è§£æå›¾ç‰‡åœ°å€å¤±è´¥:" + html, LOG.NormalType);
 			fc.FinishDl(chapter, 0);
 			return;
 		}
@@ -78,7 +78,7 @@ public class DLThread implements Runnable{
 			
 			if(0 == result)
 			{
-				LOG.log("ÏÂÔØÍ¼Æ¬µØÖ·Ê§°Ü:" + path, LOG.NormalType);
+				LOG.log("ä¸‹è½½å›¾ç‰‡åœ°å€å¤±è´¥:" + path, LOG.NormalType);
 				fc.FinishDl(chapter, 0);
 				return;
 			}
@@ -88,7 +88,7 @@ public class DLThread implements Runnable{
 		
 		fc.FinishDl(chapter, 1);
 	}
-	//Ò»Ğ©´øÆæ¹Ö·ûºÅµÄÃû³Æ¿ÉÄÜ»áµ¼ÖÂ´´½¨ÎÄ¼ş¼ĞÊ§°Ü£¬ËùÒÔĞèÒª½øĞĞÔ¤´¦Àí
+	//ä¸€äº›å¸¦å¥‡æ€ªç¬¦å·çš„åç§°å¯èƒ½ä¼šå¯¼è‡´åˆ›å»ºæ–‡ä»¶å¤¹å¤±è´¥ï¼Œæ‰€ä»¥éœ€è¦è¿›è¡Œé¢„å¤„ç†
 	private void processTitle()
 	{
 		title = title.replaceAll("[\\^%&',.;=?$]+", "");

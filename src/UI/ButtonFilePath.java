@@ -18,7 +18,7 @@ public class ButtonFilePath extends JButton{
 	
 	public ButtonFilePath()
 	{
-		this.setText("Ñ¡Ôñ");
+		this.setText("é€‰æ‹©");
 		this.setBounds(325, 0, 103, 30); 
 		this.addMouseListener(new MouseAdapter()
 		{

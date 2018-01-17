@@ -4,7 +4,7 @@ import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-//这个类用于记录一些常用的变量
+//杩欎釜绫荤敤浜庤褰曚竴浜涘父鐢ㄧ殑鍙橀噺
 public class ValidConfig {
 	public static final int WinH = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	public static final int WinW = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
