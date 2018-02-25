@@ -70,18 +70,22 @@ public class GetPicture {
 	{
 		String path = null;
 		String[] files = null;
-		String MatchString = "files\":\\[(.+?)\\],(.+?)path\":\"(.+?)\"";
+		String cid = null;
+		String md5 = null;
+		String MatchString = "cid\":(.+?),\"cname(.+?)files\":\\[(.+?)\\],(.+?)path\":\"(.+?)\"(.+?)md5\":\"(.+?)\"";
 		Pattern pattern = Pattern.compile(MatchString);
 		Matcher match = pattern.matcher(ParkerInfo);
 		
 		while(match.find())
 		{
-			path = match.group(3);
-			files = match.group(1).replaceAll("\"","").replaceAll(".webp", "").split(",");
+			cid = match.group(1);
+			path = match.group(5);
+			files = match.group(3).replaceAll("\"","").replaceAll(".webp", "").split(",");
+			md5 = match.group(7);
 		}
 		for(String file:files)
 		{
-			PicturePath.add("http://i.hamreus.com:8080" + path + file);
+			PicturePath.add("http://i.hamreus.com" + path + file + "?cid="+ cid + "&md5=" + md5);
 		}
 	}
 	
