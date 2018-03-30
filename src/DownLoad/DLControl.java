@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 
 import Config.ValidConfig;
 import GetComic.Chapter;
-import GetComic.GetChapter;
 import UI.FrameComic;
+import manhuagui.GetChapter;
 //这个类为下载控制中心，主要用于与面板的通信和下载线程的控制
 public class DLControl {
 	private String ComicNum = null;

@@ -1,4 +1,4 @@
-package GetComic;
+package manhuagui;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 import Config.LOG;
 import Config.ValidConfig;
+import GetComic.Chapter;
 //该类用于获取漫画的章节名和各章节的URL
 public class GetChapter {
 	private ArrayList<Chapter> Chapter = new ArrayList<Chapter>();

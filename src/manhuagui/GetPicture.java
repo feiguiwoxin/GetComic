@@ -1,4 +1,4 @@
-package GetComic;
+package manhuagui;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

@@ -1,4 +1,4 @@
-package GetComic;
+package manhuagui;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

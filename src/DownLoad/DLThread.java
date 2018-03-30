@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import Config.LOG;
 import Config.ValidConfig;
 import GetComic.Chapter;
-import GetComic.GetPicture;
-import GetComic.SaveImg;
 import UI.FrameComic;
+import manhuagui.GetPicture;
+import manhuagui.SaveImg;
 
 public class DLThread implements Runnable{
 	private String html = null;
