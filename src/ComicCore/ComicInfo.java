@@ -1,4 +1,4 @@
-package GetComic;
+package ComicCore;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-import Config.LOG;
+import Start.LOG;
 /******************************
  * 在抽象类中增加2个公共方法：
  * 1）获取网页信息的方法，这在获取章节和图片地址时必然会用到
@@ -21,7 +21,7 @@ import Config.LOG;
 public abstract class ComicInfo implements Comic{
 	protected String BookName = null;
 	
-	public String getBookName()
+	public String GetBookName()
 	{
 		return BookName; 
 	}

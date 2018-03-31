@@ -19,12 +19,13 @@ public class ButtonFilePath extends JButton{
 	public ButtonFilePath()
 	{
 		this.setText("选择");
-		this.setBounds(325, 0, 103, 30); 
+		this.setBounds(392, 0, 93, 30); 
 		this.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mousePressed(MouseEvent e)
 			{
+				if (!ButtonFilePath.this.isEnabled()) return;
 				JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new File(pc.getFilePath()));
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

@@ -9,7 +9,7 @@ public class TextFileText extends JTextField{
 	
 	public TextFileText()
 	{
-		this.setBounds(0, 0, 322, 30);
+		this.setBounds(0, 0, 387, 30);
 		this.setText((new File(".")).getAbsolutePath());
 	}
 }

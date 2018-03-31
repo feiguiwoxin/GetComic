@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import Config.ValidConfig;
+import DownLoad.DLControl;
 
 @SuppressWarnings("serial")
 public class ButtonDownLoad extends JButton{
@@ -31,7 +31,7 @@ public class ButtonDownLoad extends JButton{
 				{
 					ButtonDownLoad.this.setText("中断");
 					DLState = true;
-					ValidConfig.RunThread = true;
+					DLControl.RunThread = true;
 					boolean result = pc.StartDL(ButtonDownLoad.this);
 					if(false == result)
 					{

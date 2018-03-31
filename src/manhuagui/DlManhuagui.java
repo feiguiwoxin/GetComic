@@ -10,24 +10,16 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.swing.JOptionPane;
 
-import Config.LOG;
-import Config.ValidConfig;
-import GetComic.Chapter;
-import GetComic.ComicInfo;
+import ComicCore.Chapter;
+import ComicCore.ComicInfo;
+import Start.LOG;
 
 public class DlManhuagui extends ComicInfo{
-	private StringBuilder UrlAddr = null;
-	private String ComicNum = null;
-	
-	public DlManhuagui(String ComicNum)
-	{
-		this.UrlAddr = new StringBuilder("http://www.manhuagui.com/comic/").append(ComicNum)
-									.append("/?").append((new Date()).getTime());
-		this.ComicNum = ComicNum;
-	}
 
 	@Override
-	public ArrayList<Chapter> GetChapetr() {
+	public ArrayList<Chapter> GetChapetr(String ComicId) {
+		String UrlAddr = "http://www.manhuagui.com/comic/" + ComicId + "/?" +(new Date()).getTime();
+		
 		String HtmlInfo = this.GetHtmlInfo(UrlAddr.toString());
 		if(null == HtmlInfo) return null;
 		
@@ -38,6 +30,7 @@ public class DlManhuagui extends ComicInfo{
 		String BookNameRex = "name: '(.+?)'";
 		Pattern pattern = Pattern.compile(BookNameRex);
 		Matcher matcher = pattern.matcher(HtmlInfo);
+		
 		
 		while(matcher.find())
 		{
@@ -51,13 +44,13 @@ public class DlManhuagui extends ComicInfo{
 		}
 		
 		//使用正则表达式进行匹配
-		String Rex = "<li><a href=\"/comic/" + ComicNum + "/(.+?)\" title=\"(.+?)\"";
+		String Rex = "<li><a href=\"/comic/" + ComicId + "/(.+?)\" title=\"(.+?)\"";
 		pattern = Pattern.compile(Rex);
 		matcher = pattern.matcher(HtmlInfo);
 		while(matcher.find())
 		{
 			Title = matcher.group(2);
-			Html = "http://www.manhuagui.com/comic/" + ComicNum + "/" + matcher.group(1);
+			Html = "http://www.manhuagui.com/comic/" + ComicId + "/" + matcher.group(1);
 			Chapters.add(new Chapter(Title, Html));
 		}
 		
@@ -80,7 +73,7 @@ public class DlManhuagui extends ComicInfo{
 		ScriptEngineManager enginemanager = new ScriptEngineManager();
 		ScriptEngine engine = enginemanager.getEngineByName("js");
 		try {
-			engine.eval(ValidConfig.JSFile);
+			engine.eval(manhuaguiCfg.JSFile);
 			Invocable inv = (Invocable)engine;
 			tmpHtmlInfo = (String)inv.invokeFunction("getChapter", keyword);			
 		} catch (Exception e) {
@@ -165,7 +158,7 @@ public class DlManhuagui extends ComicInfo{
 		ScriptEngineManager engineManager = new ScriptEngineManager();
 		ScriptEngine engine = engineManager.getEngineByName("js");
 		try {
-			engine.eval(ValidConfig.JSFile);
+			engine.eval(manhuaguiCfg.JSFile);
 			Invocable inv = (Invocable)engine;
 			String ParkerInfo = (String)inv.invokeFunction("parase", para1,para2,para3,para4,para5);
 			return ParkerInfo;

@@ -1,4 +1,4 @@
-package GetComic;
+package ComicCore;
 
 public class Chapter{
 	private String Title = null;

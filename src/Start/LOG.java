@@ -1,4 +1,4 @@
-package Config;
+package Start;
 
 import java.io.File;
 import java.io.FileWriter;

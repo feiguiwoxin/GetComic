@@ -24,7 +24,7 @@ public class ButtonAnaly extends JButton{
 			{
 				if(ButtonAnaly.this.isEnabled())
 				{	
-					ButtonAnaly.this.setText("获取章节中....");
+					ButtonAnaly.this.setText("获取中....");
 					ButtonAnaly.this.setEnabled(false);
 					ButtonAnaly.this.paintImmediately(0, 0, ButtonAnaly.this.getWidth(), ButtonAnaly.this.getHeight());
 					pc.StartAnaly(ButtonAnaly.this);

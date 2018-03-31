@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//src/ComicCore/Chapter.java=UTF-8
+encoding//src/DownLoad/DLControl.java=UTF-8
+encoding//src/DownLoad/DLThread.java=UTF-8
+encoding//src/Start/LOG.java=UTF-8
+encoding//src/Start/Start.java=UTF-8
+encoding//src/UI/ButtonAnaly.java=UTF-8
+encoding//src/UI/ButtonDownLoad.java=UTF-8
+encoding//src/UI/ButtonFilePath.java=UTF-8
+encoding//src/UI/CheckBoxAll.java=UTF-8
+encoding//src/UI/FrameComic.java=UTF-8
+encoding//src/UI/PanelControl.java=UTF-8
+encoding//src/UI/SelectThread.java=UTF-8
+encoding//src/UI/TextComicID.java=UTF-8
+encoding//src/UI/TextFileText.java=UTF-8
+encoding//src/UI/UIConfig.java=UTF-8

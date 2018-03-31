@@ -7,25 +7,31 @@ import java.util.concurrent.Executors;
 
 import javax.swing.JOptionPane;
 
-import Config.ValidConfig;
-import GetComic.Chapter;
+import ComicCore.Chapter;
+import ComicCore.Comic;
+import ComicCore.comicfactory;
 import UI.FrameComic;
-import manhuagui.GetChapter;
 //这个类为下载控制中心，主要用于与面板的通信和下载线程的控制
 public class DLControl {
-	private String ComicNum = null;
+	public static volatile boolean RunThread = true;
+	
+	private String ComicId = null;
+	private int websiteIdx = 0;
 	private int PoolSize = 0;
 	private String FilePath = null;
 	private FrameComic fc = null;
 	private ExecutorService fixpool = null;
 	private String BookName = null;
+	private Comic getComic = null;
+	
 	//获取网页的章节
 	public boolean AnalyChapter()
 	{
-		if(null == ComicNum) return false;
-		GetChapter  getchapter =  new GetChapter(ComicNum);
-		ArrayList<Chapter> Chapters = getchapter.getChapter();
-		BookName = getchapter.getBookName();
+		if(null == ComicId) return false;
+		getComic = new comicfactory().create(websiteIdx);
+		ArrayList<Chapter> Chapters = getComic.GetChapetr(ComicId);
+		BookName = getComic.GetBookName();
+		if (BookName == null) BookName = "default";
 		
 		if(Chapters.isEmpty())
 		{
@@ -40,7 +46,7 @@ public class DLControl {
 		if(null != fixpool)
 		{
 			fixpool.shutdownNow();
-			ValidConfig.RunThread = false;	
+			DLControl.RunThread = false;	
 		}
 		fc.InterrputDL();
 	}
@@ -82,7 +88,7 @@ public class DLControl {
 	
 	public boolean ThreadControl(ArrayList<Chapter> Chapters)
 	{	
-		File HeadDir = new File(FilePath + "/" +  BookName + "(" + ComicNum + ")");
+		File HeadDir = new File(FilePath + "/" +  BookName + "(" + ComicId + ")");
 		
 		if(!(HeadDir.exists() && HeadDir.isDirectory()))
 		{
@@ -95,7 +101,7 @@ public class DLControl {
 		
 		for(Chapter c : Chapters)
 		{	
-			DLThread dl = new DLThread(c, HeadDir.getAbsolutePath());
+			DLThread dl = new DLThread(c, HeadDir.getAbsolutePath(), getComic);
 			dl.setFC(fc);
 			fixpool.execute(dl);	
 		}
@@ -103,11 +109,15 @@ public class DLControl {
 		return true;
 	}
 
-	public void setComicNum(String comicNum) {
-		ComicNum = comicNum;
+	public void setComicId(String ComicId) {
+		this.ComicId = ComicId;
 	}
 
 	public void setFilePath(String filePath) {
 		FilePath = filePath;
+	}
+
+	public void setWebsiteIdx(int websiteIdx) {
+		this.websiteIdx = websiteIdx;
 	}
 }

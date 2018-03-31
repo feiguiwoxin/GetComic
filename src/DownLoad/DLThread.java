@@ -3,12 +3,11 @@ package DownLoad;
 import java.io.File;
 import java.util.ArrayList;
 
-import Config.LOG;
-import Config.ValidConfig;
-import GetComic.Chapter;
+import ComicCore.Chapter;
+import ComicCore.Comic;
+import ComicCore.ComicInfo;
+import Start.LOG;
 import UI.FrameComic;
-import manhuagui.GetPicture;
-import manhuagui.SaveImg;
 
 public class DLThread implements Runnable{
 	private String html = null;
@@ -17,14 +16,15 @@ public class DLThread implements Runnable{
 	private FrameComic fc = null;
 	private int len = 0;
 	private Chapter chapter = null;
-	private SaveImg currimg = null;
+	private Comic getComic = null;
 	
-	public DLThread(Chapter chapter,String path)
+	public DLThread(Chapter chapter,String path, Comic getComic)
 	{
 		this.chapter = chapter;
 		this.html = chapter.getHtml();
 		this.title = chapter.getTitle();
 		this.path = path;
+		this.getComic = getComic;
 		processTitle();
 	}
 	
@@ -36,7 +36,7 @@ public class DLThread implements Runnable{
 	@Override
 	public void run() {
 		
-		if(!ValidConfig.RunThread)
+		if(!DLControl.RunThread)
 		{
 			return;
 		}
@@ -51,7 +51,7 @@ public class DLThread implements Runnable{
 			}
 		}			
 		
-		ArrayList<String> PicPath = new GetPicture(html).getPicturePath();
+		ArrayList<String> PicPath = getComic.GetPicUrlByChapter(html);
 		
 		if(PicPath.isEmpty())
 		{
@@ -68,10 +68,9 @@ public class DLThread implements Runnable{
 		for(String path : PicPath)
 		{				
 			fc.UpdateDLinfo(chapter, index, len);
-			currimg = new SaveImg(path, dir.getAbsolutePath() + "/", String.format("%0" + numlen + "d", index) + ".jpg");
-			result = currimg.SavePicture();
+			result = ComicInfo.SavePicture(path, dir.getAbsolutePath() + "/", String.format("%0" + numlen + "d", index) + ".jpg");
 			
-			if(!ValidConfig.RunThread)
+			if(!DLControl.RunThread)
 			{
 				return;
 			}

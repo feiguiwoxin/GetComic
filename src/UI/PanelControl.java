@@ -16,6 +16,7 @@ public class PanelControl extends JPanel{
 	private DLControl dlc = null;
 	private ButtonFilePath filepath = new ButtonFilePath();
 	private TextFileText filetext = new TextFileText();
+	private SelectWebSite website = new SelectWebSite();
 	
 	public PanelControl()
 	{
@@ -38,10 +39,11 @@ public class PanelControl extends JPanel{
 	private void initLayout()
 	{
 		this.add(ComicId);
+		this.add(website);
 		this.add(select);
 		this.add(buttonanaly);
 		this.add(buttonDl);
-		this.setBounds(5, 10, 430, 30);
+		this.setBounds(5, 10, 485, 30);
 		this.setBackground(new Color(144, 238, 144));
 		this.setLayout(new GridLayout(1, 4, 5, 0));
 	}
@@ -62,7 +64,8 @@ public class PanelControl extends JPanel{
 			return;
 		}
 		
-		dlc.setComicNum(ComicId.getText());
+		dlc.setComicId(ComicId.getText());
+		dlc.setWebsiteIdx(website.getSelectedIndex());
 		
 		if(dlc.AnalyChapter())
 		{
@@ -85,12 +88,18 @@ public class PanelControl extends JPanel{
 		
 		buttonanaly.setEnabled(false);
 		select.setEnabled(false);
+		website.setEnabled(false);
+		filepath.setEnabled(false);
+		filetext.setEditable(false);
 		dlc.setFilePath(filetext.getText());
 		boolean result = dlc.StartDL((int)Math.pow(2, select.getSelectedIndex()) * 4);
 		if(false == result)
 		{
 			buttonanaly.setEnabled(true);
 			select.setEnabled(true);
+			website.setEnabled(true);
+			filepath.setEnabled(true);
+			filetext.setEditable(true);
 		}
 		
 		return result;
@@ -103,6 +112,8 @@ public class PanelControl extends JPanel{
 		buttonDl.resetDLStat();
 		buttonanaly.setEnabled(true);
 		select.setEnabled(true);
+		website.setEnabled(true);
+		filepath.setEnabled(true);
 	}
 	
 	public void InterrputDL()
@@ -127,5 +138,9 @@ public class PanelControl extends JPanel{
 
 	public TextFileText getTextFileText() {
 		return filetext;
+	}
+
+	public SelectWebSite getWebsite() {
+		return website;
 	}
 }

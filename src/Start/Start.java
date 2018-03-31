@@ -3,7 +3,6 @@ package Start;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import Config.LOG;
 import DownLoad.DLControl;
 import UI.FrameComic;
 import UI.PanelControl;

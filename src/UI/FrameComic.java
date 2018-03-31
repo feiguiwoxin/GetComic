@@ -1,8 +1,6 @@
 package UI;
 
-import Config.LOG;
-import Config.ValidConfig;
-import GetComic.Chapter;
+import Start.LOG;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -21,6 +19,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import ComicCore.Chapter;
 
 @SuppressWarnings("serial")
 public class FrameComic extends JFrame{
@@ -43,8 +43,8 @@ public class FrameComic extends JFrame{
 		this.setResizable(false);
 		//采取如此奇怪的读取方式是为了在JAR中能读取到img
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("Comic.png")));
-		this.setSize(ValidConfig.ComicW, ValidConfig.ComicH);
-		this.setLocation((ValidConfig.WinW - ValidConfig.ComicW) / 2, (ValidConfig.WinH - ValidConfig.ComicH) / 2);
+		this.setSize(UIConfig.ComicW, UIConfig.ComicH);
+		this.setLocation((UIConfig.WinW - UIConfig.ComicW) / 2, (UIConfig.WinH - UIConfig.ComicH) / 2);
 		this.addWindowListener(new WindowAdapter()
 		{
 			@Override
@@ -92,14 +92,14 @@ public class FrameComic extends JFrame{
 				"2）如果中断后发现选择章节界面是灰色的，这时候可以直接关闭程序，然后重新打开重新分析下载，只要你不改动保存位置也不删除已下载文件，那么对于已下载内容同样会直接跳过，不会重新下载。");
 		
 		JScrollPane sp = new JScrollPane(ta);
-		sp.setBounds(5, 450, 430, 115);
+		sp.setBounds(5, 450, 485, 115);
 		con.add(sp);
 	}
 	
 	private void setFileUI(Container con)
 	{
 		JPanel filepanel = new JPanel();
-		filepanel.setBounds(5, 45, 430, 30);
+		filepanel.setBounds(5, 45, 485, 30);
 		filepanel.setBackground(new Color(144, 238, 144));
 		filepanel.setLayout(null);
 		
@@ -116,7 +116,7 @@ public class FrameComic extends JFrame{
 		JpScroll.setLayout(new BoxLayout(JpScroll, BoxLayout.Y_AXIS));
 		scrollpane = new JScrollPane(JpScroll);
 		scrollpane.getVerticalScrollBar().setUnitIncrement(15);
-		scrollpane.setBounds(5, 80, 430, 365);				
+		scrollpane.setBounds(5, 80, 485, 365);				
 		con.add(scrollpane);		
 	}
 	
