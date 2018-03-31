@@ -11,7 +11,6 @@ public class Start {
 
 	public static void main(String[] args) throws InterruptedException
 	{
-		LOG.loginDate();
 		PanelControl pc = new PanelControl();
 		FrameComic fc = new FrameComic(pc);
 		DLControl dlc = new DLControl(fc);
@@ -22,7 +21,7 @@ public class Start {
 		{
 			@Override
 			public void run() {
-				LOG.log("", LOG.PeriodType);
+				LOG.logintofile();;
 			}			
 		},
 		1, 2 * 1000);

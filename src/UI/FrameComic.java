@@ -50,7 +50,7 @@ public class FrameComic extends JFrame{
 			@Override
 			public void windowClosing(WindowEvent e)
 			{
-				LOG.log("", LOG.PeriodType);
+				LOG.logintofile();;
 				if(CheckAll != null && CheckAll.isEnabled() == false)
 				{
 					int ExitRst = JOptionPane.showConfirmDialog(null, "正在下载中，确认退出？", "确认", JOptionPane.YES_NO_OPTION);

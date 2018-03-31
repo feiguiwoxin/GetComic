@@ -22,7 +22,7 @@ public class manhuaguiCfg {
 			}
 			catch(Exception e)
 			{
-				LOG.log(e.getMessage(), LOG.NormalType);
+				LOG.log(e.getMessage());
 				e.printStackTrace();
 			}
 			finally
@@ -30,7 +30,7 @@ public class manhuaguiCfg {
 				br.close();
 			}
 		} catch (Exception e) {
-			LOG.log(e.getMessage(), LOG.NormalType);
+			LOG.log(e.getMessage());
 			e.printStackTrace();
 		}
 	}

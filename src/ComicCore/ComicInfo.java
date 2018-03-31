@@ -16,7 +16,6 @@ import Start.LOG;
  * 在抽象类中增加2个公共方法：
  * 1）获取网页信息的方法，这在获取章节和图片地址时必然会用到
  * 2）保存图片的方法，这在下载图片的时候也必然会用到
- * 3) 获取书名，这在设置保存文件夹的时候可以被用到
  ******************************/
 public abstract class ComicInfo implements Comic{
 	protected String BookName = null;
@@ -49,7 +48,7 @@ public abstract class ComicInfo implements Comic{
 			}
 			urlRead.close();
 		} catch (Exception e) {
-			LOG.log("获取网址信息错误:" + UrlAdd + " e:" + e.getMessage(), LOG.NormalType);
+			LOG.log("获取网址信息错误:" + UrlAdd + " e:" + e.getMessage());
 			e.printStackTrace();
 			return null;
 		}
@@ -78,7 +77,7 @@ public abstract class ComicInfo implements Comic{
 				fop.flush();
 			} catch (Exception e) {
 				e.printStackTrace();
-				LOG.log(e.getMessage(), LOG.NormalType);
+				LOG.log(e.getMessage());
 				return 0;
 			}
 			finally
@@ -88,7 +87,7 @@ public abstract class ComicInfo implements Comic{
 		}
 		catch(Exception e)
 		{
-			LOG.log(e.getMessage(), LOG.NormalType);
+			LOG.log(e.getMessage());
 			e.printStackTrace();
 		}
 		
@@ -117,7 +116,7 @@ public abstract class ComicInfo implements Comic{
 				return ImgData;
 			} catch (Exception e) {
 				e.printStackTrace();
-				LOG.log(e.getMessage() + "ConnectTime:" + ConnectTime, LOG.NormalType);
+				LOG.log(e.getMessage() + "ConnectTime:" + ConnectTime);
 				ConnectTime --;
 				continue;
 			}

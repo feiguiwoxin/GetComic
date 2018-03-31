@@ -30,6 +30,7 @@ public class DLControl {
 		if(null == ComicId) return false;
 		getComic = new comicfactory().create(websiteIdx);
 		ArrayList<Chapter> Chapters = getComic.GetChapetr(ComicId);
+		if(null == Chapters) return false;
 		BookName = getComic.GetBookName();
 		if (BookName == null) BookName = "default";
 		

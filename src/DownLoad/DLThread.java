@@ -46,16 +46,20 @@ public class DLThread implements Runnable{
 		{
 			if(!dir.mkdir())
 			{
-				LOG.log("创建章节文件夹失败，请检查磁盘是否已满/地址错误:" + dir.getAbsolutePath(), LOG.NormalType);
+				LOG.log("创建章节文件夹失败，请检查磁盘是否已满/地址错误:" + dir.getAbsolutePath());
 				return;
 			}
 		}			
 		
 		ArrayList<String> PicPath = getComic.GetPicUrlByChapter(html);
-		
-		if(PicPath.isEmpty())
+		if(PicPath == null)
 		{
-			LOG.log("解析图片地址失败:" + html, LOG.NormalType);
+			fc.FinishDl(chapter, 0);
+			return;
+		}
+		else if(PicPath.isEmpty())
+		{
+			LOG.log("解析图片地址失败:" + html);
 			fc.FinishDl(chapter, 0);
 			return;
 		}
@@ -77,7 +81,7 @@ public class DLThread implements Runnable{
 			
 			if(0 == result)
 			{
-				LOG.log("下载图片地址失败:" + path, LOG.NormalType);
+				LOG.log("下载图片地址失败:" + path);
 				fc.FinishDl(chapter, 0);
 				return;
 			}

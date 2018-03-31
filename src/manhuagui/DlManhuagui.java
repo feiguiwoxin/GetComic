@@ -77,7 +77,7 @@ public class DlManhuagui extends ComicInfo{
 			Invocable inv = (Invocable)engine;
 			tmpHtmlInfo = (String)inv.invokeFunction("getChapter", keyword);			
 		} catch (Exception e) {
-			LOG.log(e.getMessage(), LOG.NormalType);
+			LOG.log(e.getMessage());
 			e.printStackTrace();
 		}
 		
@@ -96,7 +96,11 @@ public class DlManhuagui extends ComicInfo{
 		if(null == HtmlInfo) return null;
 		
 		String PicInfo = GetJsInfo(HtmlInfo);
-		if(null == PicInfo) return null;
+		if(null == PicInfo)
+		{
+			LOG.log("JS解析失败");
+			return null;
+		}
 		
 		ArrayList<String> PicturePath = new ArrayList<String>();	
 		String path = null;
@@ -147,6 +151,7 @@ public class DlManhuagui extends ComicInfo{
 		
 		if(null == Para1)
 		{
+			LOG.log("Parked压缩解码失败");
 			return null;
 		}
 		
@@ -163,7 +168,7 @@ public class DlManhuagui extends ComicInfo{
 			String ParkerInfo = (String)inv.invokeFunction("parase", para1,para2,para3,para4,para5);
 			return ParkerInfo;
 		} catch (Exception e) {
-			LOG.log(e.getMessage(), LOG.NormalType);
+			LOG.log(e.getMessage());
 			e.printStackTrace();
 			return null;
 		}	
