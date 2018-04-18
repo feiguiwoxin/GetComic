@@ -49,7 +49,6 @@ public abstract class ComicInfo implements Comic{
 			urlRead.close();
 		} catch (Exception e) {
 			LOG.log("获取网址信息错误:" + UrlAdd + " e:" + e.getMessage());
-			e.printStackTrace();
 			return null;
 		}
 		return HttpInfo;

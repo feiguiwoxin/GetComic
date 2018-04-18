@@ -65,7 +65,8 @@ public class PanelControl extends JPanel{
 		}
 		
 		dlc.setComicId(ComicId.getText());
-		dlc.setWebsiteIdx(website.getSelectedIndex());
+		String package_addr = UIConfig.ComicWebList.get(website.getSelectedIndex()).getpackage_addr();
+		dlc.setpackage_addr(package_addr);
 		
 		if(dlc.AnalyChapter())
 		{

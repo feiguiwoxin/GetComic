@@ -1,21 +1,23 @@
 package ComicCore;
 
-import manhuagui.DlManhuagui;
+import Start.LOG;
 
 public class comicfactory {
-	public Comic create(int websiteIdx)
+	@SuppressWarnings("unchecked")
+	public Comic create(String package_addr)
 	{
-		if(websiteIdx == 0)
-		{
-			return new DlManhuagui();
+		Comic getcomic = null;
+		Class<? extends Comic> cls = null;
+		try {
+			cls = (Class<? extends Comic>) Class.forName(package_addr);
+			getcomic = (Comic)cls.newInstance();
+		} catch (ClassNotFoundException e) {
+			LOG.log("comicfactory:找不到指定的类:" + package_addr);
+		} catch (InstantiationException e) {
+			LOG.log("comicfactory:没有默认构造器:" + package_addr);
+		} catch (IllegalAccessException e) {
+			LOG.log("comicfactory:没有默认构造器:" + package_addr);
 		}
-		/*
-		else if(websiteIdx == 1)注意此处的等号右边的值就是你在SelectWebSite中添加网址的次序-1
-		{
-			return new 你实现Comic接口的那个类
-		}
-		*/
-		
-		return null;
+		return getcomic;
 	}
 }

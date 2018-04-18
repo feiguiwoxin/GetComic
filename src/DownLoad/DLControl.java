@@ -16,7 +16,7 @@ public class DLControl {
 	public static volatile boolean RunThread = true;
 	
 	private String ComicId = null;
-	private int websiteIdx = 0;
+	private String package_addr = null;
 	private int PoolSize = 0;
 	private String FilePath = null;
 	private FrameComic fc = null;
@@ -28,7 +28,8 @@ public class DLControl {
 	public boolean AnalyChapter()
 	{
 		if(null == ComicId) return false;
-		getComic = new comicfactory().create(websiteIdx);
+		getComic = new comicfactory().create(package_addr);
+		if(null == getComic) return false;
 		ArrayList<Chapter> Chapters = getComic.GetChapetr(ComicId);
 		if(null == Chapters) return false;
 		BookName = getComic.GetBookName();
@@ -118,7 +119,7 @@ public class DLControl {
 		FilePath = filePath;
 	}
 
-	public void setWebsiteIdx(int websiteIdx) {
-		this.websiteIdx = websiteIdx;
+	public void setpackage_addr(String package_addr) {
+		this.package_addr = package_addr;
 	}
 }
