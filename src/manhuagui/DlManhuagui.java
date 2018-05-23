@@ -18,7 +18,7 @@ public class DlManhuagui extends ComicInfo{
 
 	@Override
 	public ArrayList<Chapter> GetChapetr(String ComicId) {
-		String UrlAddr = "http://www.manhuagui.com/comic/" + ComicId + "/?" +(new Date()).getTime();
+		String UrlAddr = "https://www.manhuagui.com/comic/" + ComicId + "/?" +(new Date()).getTime();
 		
 		String HtmlInfo = this.GetHtmlInfo(UrlAddr.toString());
 		if(null == HtmlInfo) return null;
@@ -50,7 +50,7 @@ public class DlManhuagui extends ComicInfo{
 		while(matcher.find())
 		{
 			Title = matcher.group(2);
-			Html = "http://www.manhuagui.com/comic/" + ComicId + "/" + matcher.group(1);
+			Html = "https://www.manhuagui.com/comic/" + ComicId + "/" + matcher.group(1);
 			Chapters.add(new Chapter(Title, Html));
 		}
 		
@@ -120,7 +120,7 @@ public class DlManhuagui extends ComicInfo{
 		}
 		for(String file:files)
 		{
-			PicturePath.add("http://i.hamreus.com" + path + file + "?cid="+ cid + "&md5=" + md5);
+			PicturePath.add("https://i.hamreus.com" + path + file + "?cid="+ cid + "&md5=" + md5);
 		}
 		
 		return PicturePath;

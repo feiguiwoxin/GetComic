@@ -7,9 +7,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import Start.LOG;
 /******************************
@@ -31,27 +38,71 @@ public abstract class ComicInfo implements Comic{
 		if(null == UrlAdd) return null;
 		String line;
 		URL url;
+		int trytime = 5;
 		
-		try {
-			url = new URL(UrlAdd);
-			URLConnection urlcon = url.openConnection();
-			urlcon.setRequestProperty("accept", "*/*");
-			urlcon.setRequestProperty("connection", "Keep-Alive");
-			urlcon.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/57.0");
-			urlcon.setConnectTimeout(3 * 1000);
-			urlcon.setReadTimeout(3 * 1000);
-			urlcon.connect();
-			BufferedReader urlRead = new BufferedReader(new InputStreamReader(urlcon.getInputStream(), "utf-8"));
-			while((line = urlRead.readLine()) != null)
-			{
-				HttpInfo += line;
+		while(trytime > 0)
+		{
+			try {
+				url = new URL(UrlAdd);
+				URLConnection urlcon = url.openConnection();
+				if(UrlAdd.startsWith("https"))
+				{
+					trustall((HttpsURLConnection) urlcon);
+				}
+				
+				urlcon.setRequestProperty("accept", "*/*");
+				urlcon.setRequestProperty("connection", "Keep-Alive");
+				urlcon.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/57.0");
+				urlcon.setConnectTimeout(3 * 1000);
+				urlcon.setReadTimeout(3 * 1000);
+				urlcon.connect();
+				BufferedReader urlRead = new BufferedReader(new InputStreamReader(urlcon.getInputStream(), "utf-8"));
+				while((line = urlRead.readLine()) != null)
+				{
+					HttpInfo += line;
+				}
+				urlRead.close();
+				return HttpInfo;
+			} catch (Exception e) {
+				trytime --;		
+				LOG.log(String.format("%s:%d次重连，信息%s", UrlAdd, trytime, e.getMessage()));
+				continue;
 			}
-			urlRead.close();
-		} catch (Exception e) {
-			LOG.log("获取网址信息错误:" + UrlAdd + " e:" + e.getMessage());
-			return null;
 		}
+		
+		if(HttpInfo == null)
+		{
+			LOG.log("获取网址信息错误:" + UrlAdd);
+		}
+		
 		return HttpInfo;
+	}
+	
+	private static void trustall(HttpsURLConnection con)
+	{
+		TrustManager[] trustallcert = {new X509TrustManager()
+		{
+			@Override
+			public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+			}
+
+			@Override
+			public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+			}
+
+			@Override
+			public X509Certificate[] getAcceptedIssuers() {
+				return null;
+			}}};
+		SSLContext ssl;
+		try {
+			ssl = SSLContext.getInstance("SSL");
+			ssl.init(null, trustallcert, new SecureRandom());
+			con.setSSLSocketFactory(ssl.getSocketFactory());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static int SavePicture(String UrlAdd, String Path, String FileName)
@@ -104,9 +155,12 @@ public abstract class ComicInfo implements Comic{
 		{
 			try {
 				URL url = new URL(UrlAdd);
-				HttpURLConnection urlcon = (HttpURLConnection)url.openConnection();
+				URLConnection urlcon = url.openConnection();
+				if(UrlAdd.startsWith("https"))
+				{
+					trustall((HttpsURLConnection)urlcon);
+				}				
 				urlcon.setRequestProperty("Referer", "http://www.manhuagui.com/");
-				urlcon.setRequestMethod("GET");
 				urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/57.0");
 				urlcon.setConnectTimeout(5 * 1000);
 				urlcon.setReadTimeout(8 * 1000);
