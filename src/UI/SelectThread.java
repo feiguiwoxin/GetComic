@@ -9,8 +9,6 @@ public class SelectThread extends JComboBox<String>{
 	{
 		this.addItem("4线程");
 		this.addItem("8线程");
-		this.addItem("16线程(推荐)");
-		this.addItem("32线程(慎用)");
-		this.setSelectedIndex(2);
+		this.setSelectedIndex(0);
 	}
 }

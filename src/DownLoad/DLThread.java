@@ -72,7 +72,7 @@ public class DLThread implements Runnable{
 		for(String path : PicPath)
 		{				
 			fc.UpdateDLinfo(chapter, index, len);
-			result = ComicInfo.SavePicture(path, dir.getAbsolutePath() + "/", String.format("%0" + numlen + "d", index) + ".jpg");
+			result = ComicInfo.SavePicture(path, dir.getAbsolutePath() + "/", String.format("%0" + numlen + "d", index) + ".jpg", html);
 			
 			if(!DLControl.RunThread)
 			{

@@ -52,7 +52,7 @@ public abstract class ComicInfo implements Comic{
 				
 				urlcon.setRequestProperty("accept", "*/*");
 				urlcon.setRequestProperty("connection", "Keep-Alive");
-				urlcon.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/57.0");
+				urlcon.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0");
 				urlcon.setConnectTimeout(3 * 1000);
 				urlcon.setReadTimeout(3 * 1000);
 				urlcon.connect();
@@ -105,7 +105,7 @@ public abstract class ComicInfo implements Comic{
 		
 	}
 	
-	public static int SavePicture(String UrlAdd, String Path, String FileName)
+	public static int SavePicture(String UrlAdd, String Path, String FileName, String refer)
 	{
 		if(null == Path || null == FileName) return 0;
 		//提前判断文件是否存在，如果存在直接跳过下载，加快续传速度
@@ -115,7 +115,7 @@ public abstract class ComicInfo implements Comic{
 			return 1;
 		}
 		
-		byte[] imgData = getImgData(UrlAdd);
+		byte[] imgData = getImgData(UrlAdd, refer);
 		if(null == imgData) return 0;
 		
 		FileOutputStream fop = null;
@@ -144,7 +144,7 @@ public abstract class ComicInfo implements Comic{
 		return 1;
 	}
 	//获取图片的二进制流
-	private static byte[] getImgData(String UrlAdd)
+	private static byte[] getImgData(String UrlAdd, String refer)
 	{
 		byte[] ImgData = null;
 		//如果连接失败，有3次重连机会
@@ -160,8 +160,8 @@ public abstract class ComicInfo implements Comic{
 				{
 					trustall((HttpsURLConnection)urlcon);
 				}				
-				urlcon.setRequestProperty("Referer", "http://www.manhuagui.com/");
-				urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/57.0");
+				urlcon.setRequestProperty("Referer", refer);
+				urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0");
 				urlcon.setConnectTimeout(5 * 1000);
 				urlcon.setReadTimeout(8 * 1000);
 				
