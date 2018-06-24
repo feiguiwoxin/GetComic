@@ -20,7 +20,7 @@ public class LOG {
 	public static synchronized void log(String str)
 	{			
 		lognum ++;
-		logbuff = logbuff.append("info:(" + str + ")\r\n");
+		logbuff = logbuff.append(String.format("%tT:%s\r\n", new Date(), str));
 		
 		if(lognum > 20 || str.length() > 1024)
 		{
@@ -30,7 +30,7 @@ public class LOG {
 	
 	private static void loginDate()
 	{
-		logbuff = logbuff.append(new Date().toString() + "\r\n");
+		logbuff = logbuff.append(String.format("%1$tF %1$tT:START!!!\r\n", new Date()));
 		logintofile();
 	}
 	

@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLDecoder;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -65,7 +66,7 @@ public abstract class ComicInfo implements Comic{
 				return HttpInfo;
 			} catch (Exception e) {
 				trytime --;		
-				LOG.log(String.format("%s:%d次重连，信息%s", UrlAdd, trytime, e.getMessage()));
+				LOG.log(String.format("%s倒数第%d次重连，信息%s", UrlAdd, trytime, e.getMessage()));
 				continue;
 			}
 		}
@@ -154,6 +155,7 @@ public abstract class ComicInfo implements Comic{
 		while(ConnectTime > 0)
 		{
 			try {
+				UrlAdd = URLDecoder.decode(UrlAdd, "utf-8");
 				URL url = new URL(UrlAdd);
 				URLConnection urlcon = url.openConnection();
 				if(UrlAdd.startsWith("https"))
@@ -169,7 +171,7 @@ public abstract class ComicInfo implements Comic{
 				return ImgData;
 			} catch (Exception e) {
 				e.printStackTrace();
-				LOG.log(e.getMessage() + "ConnectTime:" + ConnectTime);
+				LOG.log(String.format("%s倒数第%d次重连，信息%s", UrlAdd, ConnectTime, e.getMessage()));
 				ConnectTime --;
 				continue;
 			}
