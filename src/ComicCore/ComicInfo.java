@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -44,6 +44,7 @@ public abstract class ComicInfo implements Comic{
 		while(trytime > 0)
 		{
 			try {
+				UrlAdd = URLEncoder.encode(UrlAdd, "utf-8");
 				url = new URL(UrlAdd);
 				URLConnection urlcon = url.openConnection();
 				if(UrlAdd.startsWith("https"))
@@ -54,8 +55,8 @@ public abstract class ComicInfo implements Comic{
 				urlcon.setRequestProperty("accept", "*/*");
 				urlcon.setRequestProperty("connection", "Keep-Alive");
 				urlcon.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0");
-				urlcon.setConnectTimeout(3 * 1000);
-				urlcon.setReadTimeout(3 * 1000);
+				urlcon.setConnectTimeout(10 * 1000);
+				urlcon.setReadTimeout(10 * 1000);
 				urlcon.connect();
 				BufferedReader urlRead = new BufferedReader(new InputStreamReader(urlcon.getInputStream(), "utf-8"));
 				while((line = urlRead.readLine()) != null)
@@ -148,14 +149,14 @@ public abstract class ComicInfo implements Comic{
 	private static byte[] getImgData(String UrlAdd, String refer)
 	{
 		byte[] ImgData = null;
-		//如果连接失败，有3次重连机会
-		int ConnectTime = 3;
+		//如果连接失败，有5次重连机会
+		int ConnectTime = 5;
 		if(null == UrlAdd) return null;
 		
 		while(ConnectTime > 0)
 		{
 			try {
-				UrlAdd = URLDecoder.decode(UrlAdd, "utf-8");
+				UrlAdd = URLEncoder.encode(UrlAdd, "utf-8");
 				URL url = new URL(UrlAdd);
 				URLConnection urlcon = url.openConnection();
 				if(UrlAdd.startsWith("https"))
@@ -164,8 +165,8 @@ public abstract class ComicInfo implements Comic{
 				}				
 				urlcon.setRequestProperty("Referer", refer);
 				urlcon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0");
-				urlcon.setConnectTimeout(5 * 1000);
-				urlcon.setReadTimeout(8 * 1000);
+				urlcon.setConnectTimeout(15 * 1000);
+				urlcon.setReadTimeout(15 * 1000);
 				
 				ImgData = GetbyteFromStream(urlcon.getInputStream());
 				return ImgData;
