@@ -13,6 +13,8 @@ import java.net.URLEncoder;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -44,7 +46,6 @@ public abstract class ComicInfo implements Comic{
 		while(trytime > 0)
 		{
 			try {
-				UrlAdd = URLEncoder.encode(UrlAdd, "utf-8");
 				url = new URL(UrlAdd);
 				URLConnection urlcon = url.openConnection();
 				if(UrlAdd.startsWith("https"))
@@ -156,7 +157,7 @@ public abstract class ComicInfo implements Comic{
 		while(ConnectTime > 0)
 		{
 			try {
-				UrlAdd = URLEncoder.encode(UrlAdd, "utf-8");
+				UrlAdd = ConvertURLAddToChar(UrlAdd, "utf-8");
 				URL url = new URL(UrlAdd);
 				URLConnection urlcon = url.openConnection();
 				if(UrlAdd.startsWith("https"))
@@ -197,5 +198,25 @@ public abstract class ComicInfo implements Comic{
 		out.close();
 		
 		return imgData;
+	}
+	//将链接中可能的中文进行编码
+	private static String ConvertURLAddToChar(String UrlAdd,String Charset)
+	{
+		try 
+		{  	      
+		     Matcher matcher = Pattern.compile("[\\u4e00-\\u9fa5]").matcher(UrlAdd);  
+		     while (matcher.find()) 
+		     {  
+		       String CHNWord=matcher.group();  
+		       UrlAdd=UrlAdd.replaceAll(CHNWord, URLEncoder.encode(CHNWord,Charset));  
+		     }  
+		} 
+		catch (Exception e) 
+		{  
+		    e.printStackTrace();  
+		    LOG.log(String.format("encode string[%s] fail with[%s]", UrlAdd, Charset));
+		}  
+		  
+		return UrlAdd; 
 	}
 }
